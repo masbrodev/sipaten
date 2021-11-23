@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori_bmn;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 class KategoriBmnController extends Controller
 {
@@ -14,7 +15,8 @@ class KategoriBmnController extends Controller
      */
     public function index()
     {
-        //
+        $data['bmn'] = Kategori_bmn::all();
+        return view('pages.kategoribmn.data' , $data);
     }
 
     /**
@@ -24,7 +26,7 @@ class KategoriBmnController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.kategoribmn.add');
     }
 
     /**
@@ -35,7 +37,10 @@ class KategoriBmnController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        Kategori_bmn::create($input);
+
+        return redirect(route('pages.kategoribmn.add'));
     }
 
     /**
