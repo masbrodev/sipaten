@@ -25,6 +25,7 @@ class CreateKategoriBmnsTable extends Migration
             $table->string("pengurus")->nullable();
             $table->integer("pagu")->nullable();
             $table->string("keterangan")->nullable();
+            $table->timestamps();
         });
     }
 
