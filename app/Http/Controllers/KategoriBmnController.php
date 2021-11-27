@@ -16,7 +16,7 @@ class KategoriBmnController extends Controller
     public function index()
     {
         $data['bmn'] = Kategori_bmn::all();
-        return view('pages.kategoribmn.data' , $data);
+        return view('pages.kategoribmn.data', $data);
     }
 
     /**
@@ -49,9 +49,11 @@ class KategoriBmnController extends Controller
      * @param  \App\Models\Kategori_bmn  $kategori_bmn
      * @return \Illuminate\Http\Response
      */
-    public function show(Kategori_bmn $kategori_bmn)
+    public function show($kategori_bmn)
     {
-        //
+        $data['bmn'] = Kategori_bmn::where('id', $kategori_bmn)->first();
+        // return $data;
+        return view('pages.kategoribmn.show', $data);
     }
 
     /**
@@ -60,9 +62,11 @@ class KategoriBmnController extends Controller
      * @param  \App\Models\Kategori_bmn  $kategori_bmn
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kategori_bmn $kategori_bmn)
+    public function edit($kategori_bmn)
     {
-        //
+        $data['bmn'] = Kategori_bmn::where('id', $kategori_bmn)->first();
+        // return $data;
+        return view('pages.kategoribmn.edit', $data);
     }
 
     /**
@@ -83,8 +87,16 @@ class KategoriBmnController extends Controller
      * @param  \App\Models\Kategori_bmn  $kategori_bmn
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kategori_bmn $kategori_bmn)
+    public function destroy($kategori_bmn)
     {
-        //
+        $data = Kategori_bmn::where('id', $kategori_bmn)->first();
+        if ($data) {
+            $data->delete();
+            return redirect()->route('bmn.index');
+        } else {
+            return redirect()->back();
+        }
+
+        // $kategori_bmn->delete();
     }
 }
