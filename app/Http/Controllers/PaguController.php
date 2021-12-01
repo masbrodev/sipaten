@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bmn;
 use App\Models\Pagu;
 use Illuminate\Http\Request;
 
-class BmnController extends Controller
+class PaguController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,9 @@ class BmnController extends Controller
      */
     public function index()
     {
-        $data['bmn'] = Bmn::all();
-        return view('pages.bmn.data', $data);
+        $data['pagu'] = Pagu::all();
+        $data['total'] = Pagu::sum('pagu_anggaran');
+        return view('pages.pagu.data', $data);
     }
 
     /**
@@ -26,8 +26,7 @@ class BmnController extends Controller
      */
     public function create()
     {
-        $data['pagu'] = Pagu::all();
-        return view('pages.bmn.add', $data);
+        return view('pages.pagu.add');
     }
 
     /**
@@ -38,45 +37,48 @@ class BmnController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        Bmn::create($input);
+        Pagu::create([
+            'kode_pagu' => $request->kode_pagu,
+            'uraian' => $request->uraian,
+            'jenis_volume' => $request->jenis_volume,
+            'jumlah_volume' => $request->jumlah_volume,
+            'nilai' => $request->nilai,
+            'pagu_anggaran' => $request->nilai * $request->jumlah_volume,
+        ]);
 
-        return redirect(route('bmn.index'));
+        return redirect(route('pagu.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Bmn  $bmn
+     * @param  \App\Models\Pagu  $pagu
      * @return \Illuminate\Http\Response
      */
-    public function show($bmn)
+    public function show(Pagu $pagu)
     {
-        $data['bmn'] = Bmn::where('id', $bmn)->first();
-        return view('pages.bmn.show', $data);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Kategori_bmn  $bmn
+     * @param  \App\Models\Pagu  $pagu
      * @return \Illuminate\Http\Response
      */
-    public function edit($bmn)
+    public function edit(Pagu $pagu)
     {
-        $data['bmn'] = Bmn::where('id', $bmn)->first();
-        // return $data;
-        return view('pages.bmn.edit', $data);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Kategori_bmn  $bmn
+     * @param  \App\Models\Pagu  $pagu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Bmn $bmn)
+    public function update(Request $request, Pagu $pagu)
     {
         //
     }
@@ -84,19 +86,11 @@ class BmnController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Kategori_bmn  $bmn
+     * @param  \App\Models\Pagu  $pagu
      * @return \Illuminate\Http\Response
      */
-    public function destroy($bmn)
+    public function destroy(Pagu $pagu)
     {
-        $data = Bmn::where('id', $bmn)->first();
-        if ($data) {
-            $data->delete();
-            return redirect()->route('bmn.index');
-        } else {
-            return redirect()->back();
-        }
-
-        // $bmn->delete();
+        //
     }
 }

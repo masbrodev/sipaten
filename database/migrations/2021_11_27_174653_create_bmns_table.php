@@ -15,6 +15,7 @@ class CreateBmnsTable extends Migration
     {
         Schema::create('bmns', function (Blueprint $table) {
             $table->id();
+            $table->string("pagu_id");
             $table->integer("kode_barang");
             $table->string("nama_barang");
             $table->string("merk_type");
