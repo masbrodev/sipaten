@@ -22,6 +22,19 @@
                             @csrf
                             <div class="form-group">
                                 <div class="row">
+                                    <div class="col-sm-12">
+                                        <label>Kode Pagu<span class="text-danger">*</span></label>
+                                        <select class="custom-select" name="pagu_id" id="pagu_id">
+                                            @foreach($pagu as $a)
+                                            <option value="{{ $a->kode_pagu }}" >{{ $a->kode_pagu }} | {{ $a->uraian }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
                                     <div class="col-sm-6">
                                         <label>Kode Barang <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" name="kode_barang" id="kode_barang" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">

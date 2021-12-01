@@ -23,8 +23,10 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
-                                        <th>Kode</th>
-                                        <th>Nama</th>
+                                        <th>Kode Pagu</th>
+                                        <th>Kode Barang</th>
+                                        <th>Nama Barang</th>
+                                        <th>Merk / Type </th>
                                         <th>Kondisi</th>
                                     </tr>
                                 </thead>
@@ -32,8 +34,10 @@
                                     @foreach($bmn as $a)
                                     <tr data-toggle="modal" data-target="#edit-bmn{{$a->id}}">
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $a->pagu_id }}</td>
                                         <td>{{ $a->kode_barang }}</td>
                                         <td>{{ $a->nama_barang }}</td>
+                                        <td>{{ $a->merk_type }}</td>
                                         <td>{{ $a->kondisi }}</td>
                                     </tr>
                                     @endforeach

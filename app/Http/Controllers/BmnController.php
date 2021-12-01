@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bmn;
+use App\Models\Pagu;
 use Illuminate\Http\Request;
 
 class BmnController extends Controller
@@ -25,7 +26,8 @@ class BmnController extends Controller
      */
     public function create()
     {
-        return view('pages.bmn.add');
+        $data['pagu'] = Pagu::all();
+        return view('pages.bmn.add', $data);
     }
 
     /**
