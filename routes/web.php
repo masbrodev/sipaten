@@ -1,6 +1,10 @@
 <?php
 
-use App\Http\Controllers\KategoriBmnController;
+use App\Http\Controllers\BerkasClaimController;
+use App\Http\Controllers\BmnController;
+use App\Http\Controllers\ClaimController;
+use App\Http\Controllers\UsulanController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +22,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('bmn', KategoriBmnController::class);
+Route::resource('bmn', BmnController::class);
+Route::resource('claim', ClaimController::class);
+Route::resource('usulan', UsulanController::class);
+Route::resource('cberkas', BerkasClaimController::class);
 
 Auth::routes();
 

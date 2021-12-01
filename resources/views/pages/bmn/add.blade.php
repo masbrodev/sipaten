@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Keterangan</label>
-                                        <input type="text" class="form-control" name="keterangan" id="keterangan" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                        <input type="text" class="form-control" name="keterangan" id="keterangan">
                                     </div>
                                 </div>
                             </div>

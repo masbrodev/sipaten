@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBerkasTable extends Migration
+class CreateBerkasClaimsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateBerkasTable extends Migration
      */
     public function up()
     {
-        Schema::create('berkas', function (Blueprint $table) {
+        Schema::create('berkas_claims', function (Blueprint $table) {
             $table->id();
+            $table->integer('claim_id');
             $table->string('nama_berkas');
             $table->string('lokasi');
-            $table->morphs('surat');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateBerkasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('berkas');
+        Schema::dropIfExists('berkas_claims');
     }
 }

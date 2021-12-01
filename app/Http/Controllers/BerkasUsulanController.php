@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Claim;
+use App\Models\BerkasUsulan;
 use Illuminate\Http\Request;
 
-class ClaimController extends Controller
+class BerkasUsulanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class ClaimController extends Controller
      */
     public function index()
     {
-        $data['cl'] = Claim::all();
-        return view('pages.claim.data', $data);
+        //
     }
 
     /**
@@ -25,10 +24,7 @@ class ClaimController extends Controller
      */
     public function create()
     {
-        $count = Claim::count();
-        $data['id'] = ($count == 0) ? 1 : Claim::all()->last()->id + 1;
-
-        return view('pages.claim.add', $data);
+        //
     }
 
     /**
@@ -39,21 +35,16 @@ class ClaimController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        if ($request->ajax()) {
-            Claim::create($input);
-        }
-
-        return redirect(route('claim.create'));
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Claim  $claim
+     * @param  \App\Models\BerkasUsulan  $berkasUsulan
      * @return \Illuminate\Http\Response
      */
-    public function show(Claim $claim)
+    public function show(BerkasUsulan $berkasUsulan)
     {
         //
     }
@@ -61,10 +52,10 @@ class ClaimController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Claim  $claim
+     * @param  \App\Models\BerkasUsulan  $berkasUsulan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Claim $claim)
+    public function edit(BerkasUsulan $berkasUsulan)
     {
         //
     }
@@ -73,10 +64,10 @@ class ClaimController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Claim  $claim
+     * @param  \App\Models\BerkasUsulan  $berkasUsulan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Claim $claim)
+    public function update(Request $request, BerkasUsulan $berkasUsulan)
     {
         //
     }
@@ -84,10 +75,10 @@ class ClaimController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Claim  $claim
+     * @param  \App\Models\BerkasUsulan  $berkasUsulan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Claim $claim)
+    public function destroy(BerkasUsulan $berkasUsulan)
     {
         //
     }

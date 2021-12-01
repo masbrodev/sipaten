@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Claim;
+use App\Models\Bmn;
 use Illuminate\Http\Request;
 
-class ClaimController extends Controller
+class BmnController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class ClaimController extends Controller
      */
     public function index()
     {
-        $data['cl'] = Claim::all();
-        return view('pages.claim.data', $data);
+        $data['bmn'] = Bmn::all();
+        return view('pages.bmn.data', $data);
     }
 
     /**
@@ -25,10 +25,7 @@ class ClaimController extends Controller
      */
     public function create()
     {
-        $count = Claim::count();
-        $data['id'] = ($count == 0) ? 1 : Claim::all()->last()->id + 1;
-
-        return view('pages.claim.add', $data);
+        return view('pages.bmn.add');
     }
 
     /**
@@ -40,43 +37,44 @@ class ClaimController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        if ($request->ajax()) {
-            Claim::create($input);
-        }
+        Bmn::create($input);
 
-        return redirect(route('claim.create'));
+        return redirect(route('bmn.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Claim  $claim
+     * @param  \App\Models\Bmn  $bmn
      * @return \Illuminate\Http\Response
      */
-    public function show(Claim $claim)
+    public function show($bmn)
     {
-        //
+        $data['bmn'] = Bmn::where('id', $bmn)->first();
+        return view('pages.bmn.show', $data);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Claim  $claim
+     * @param  \App\Models\Kategori_bmn  $bmn
      * @return \Illuminate\Http\Response
      */
-    public function edit(Claim $claim)
+    public function edit($bmn)
     {
-        //
+        $data['bmn'] = Bmn::where('id', $bmn)->first();
+        // return $data;
+        return view('pages.bmn.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Claim  $claim
+     * @param  \App\Models\Kategori_bmn  $bmn
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Claim $claim)
+    public function update(Request $request, Bmn $bmn)
     {
         //
     }
@@ -84,11 +82,19 @@ class ClaimController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Claim  $claim
+     * @param  \App\Models\Kategori_bmn  $bmn
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Claim $claim)
+    public function destroy($bmn)
     {
-        //
+        $data = Bmn::where('id', $bmn)->first();
+        if ($data) {
+            $data->delete();
+            return redirect()->route('bmn.index');
+        } else {
+            return redirect()->back();
+        }
+
+        // $bmn->delete();
     }
 }

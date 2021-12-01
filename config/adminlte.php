@@ -263,6 +263,28 @@ return [
             'icon' => 'fas fa-fw fa-lock',
             'url'  => 'bmn/create',
         ],
+        ['header' => 'Claim'],
+        [
+            'text' => 'Data Claim',
+            'icon' => 'fas fa-fw fa-lock',
+            'url'  => 'claim',
+        ],
+        [
+            'text' => 'Tambah Claim',
+            'icon' => 'fas fa-fw fa-lock',
+            'url'  => 'claim/create',
+        ],
+        ['header' => 'Usulan'],
+        [
+            'text' => 'Data Usulan',
+            'icon' => 'fas fa-fw fa-lock',
+            'url'  => 'usulan',
+        ],
+        [
+            'text' => 'Tambah Usulan',
+            'icon' => 'fas fa-fw fa-lock',
+            'url'  => 'usulan/create',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
@@ -329,6 +351,32 @@ return [
                     'type' => 'css',
                     'asset' => false,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                ],
+            ],
+        ],
+        [
+            'name' => 'Dropzone',
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => 'https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.8.0/min/dropzone.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => 'https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.8.0/min/dropzone.min.js',
+                ],
+            ],
+        ],
+        'LoadingOverlay' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/LoadingOverlay/loadingoverlay.min.js',
                 ],
             ],
         ],

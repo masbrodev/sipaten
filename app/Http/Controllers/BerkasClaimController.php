@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Berkas;
+use App\Models\BerkasClaim;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class BerkasController extends Controller
+class BerkasClaimController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,16 +36,30 @@ class BerkasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $berkas = $request->file('file');
+
+        $name = uniqid() . '_berkasbmn_' . trim($berkas->getClientOriginalName());
+
+        $bulan = Carbon::now()->isoFormat('MMMM_Y');
+
+        $berkas->move('berkas/' . $bulan, $name);
+
+        BerkasClaim::create([
+            'nama_berkas' => $name,
+            'claim_id' => $request->id,
+            'lokasi' => $bulan
+        ]);
+
+        return response()->json(['success' => $name]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Berkas  $berkas
+     * @param  \App\Models\BerkasClaim  $berkasClaim
      * @return \Illuminate\Http\Response
      */
-    public function show(Berkas $berkas)
+    public function show(BerkasClaim $berkasClaim)
     {
         //
     }
@@ -52,10 +67,10 @@ class BerkasController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Berkas  $berkas
+     * @param  \App\Models\BerkasClaim  $berkasClaim
      * @return \Illuminate\Http\Response
      */
-    public function edit(Berkas $berkas)
+    public function edit(BerkasClaim $berkasClaim)
     {
         //
     }
@@ -64,10 +79,10 @@ class BerkasController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Berkas  $berkas
+     * @param  \App\Models\BerkasClaim  $berkasClaim
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Berkas $berkas)
+    public function update(Request $request, BerkasClaim $berkasClaim)
     {
         //
     }
@@ -75,10 +90,10 @@ class BerkasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Berkas  $berkas
+     * @param  \App\Models\BerkasClaim  $berkasClaim
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Berkas $berkas)
+    public function destroy(BerkasClaim $berkasClaim)
     {
         //
     }

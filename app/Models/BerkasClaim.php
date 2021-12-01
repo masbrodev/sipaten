@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Claim extends Model
+class BerkasClaim extends Model
 {
     use HasFactory;
 
-    protected $table = 'claims';
+    protected $table = 'berkas_claims';
     protected $primaryKey = 'id';
+    public $timestamps = false;
     protected $fillable = [
-        'kode',
-        'nota_dinas',
-        'nilai',
-        'keterangan',
+        'claim_id',
+        'nama_berkas',
+        'lokasi',
     ];
 }

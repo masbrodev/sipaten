@@ -14,7 +14,8 @@ class UsulanController extends Controller
      */
     public function index()
     {
-        //
+        $data['us'] = Usulan::all();
+        return view('pages.usulan.data', $data);
     }
 
     /**
@@ -24,7 +25,8 @@ class UsulanController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.usulan.add');
+
     }
 
     /**
@@ -35,7 +37,10 @@ class UsulanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        Usulan::create($input);
+
+        return redirect(route('usulan.create'));
     }
 
     /**
