@@ -3,6 +3,7 @@
 use App\Http\Controllers\BerkasClaimController;
 use App\Http\Controllers\BmnController;
 use App\Http\Controllers\ClaimController;
+use App\Http\Controllers\PaguController;
 use App\Http\Controllers\UsulanController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,7 @@ Route::get('/', function () {
 Route::resource('bmn', BmnController::class);
 Route::resource('claim', ClaimController::class);
 Route::resource('usulan', UsulanController::class);
+Route::resource('pagu', PaguController::class);
 Route::resource('cberkas', BerkasClaimController::class);
 
 Auth::routes();

@@ -252,6 +252,17 @@ return [
             'url'  => 'home',
             'icon' => 'fa fa-cubes',
         ],
+        ['header' => 'Pagu'],
+        [
+            'text' => 'Pagu Anggaran',
+            'icon' => 'fas fa-fw fa-lock',
+            'url'  => 'pagu',
+        ],
+        [
+            'text' => 'Tambah Pagu',
+            'icon' => 'fas fa-fw fa-lock',
+            'url'  => 'pagu/create',
+        ],
         ['header' => 'BMN'],
         [
             'text' => 'Data BMN',
