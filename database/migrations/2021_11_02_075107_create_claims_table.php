@@ -17,7 +17,6 @@ class CreateClaimsTable extends Migration
             $table->id();
             $table->string("kode");
             $table->string("nota_dinas");
-            $table->string("berkas");
             $table->integer("nilai");
             $table->string("keterangan")->nullable();
             $table->timestamps();

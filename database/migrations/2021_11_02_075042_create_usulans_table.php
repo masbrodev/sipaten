@@ -15,11 +15,11 @@ class CreateUsulansTable extends Migration
     {
         Schema::create('usulans', function (Blueprint $table) {
             $table->id();
-            $table->string("kode");
-            $table->string("nota_dinas");
-            $table->string("berkas");
-            $table->integer("pagu");
-            $table->string("keterangan")->nullable();
+            $table->string("kode",);
+            $table->string("nota_dinas",);
+            $table->string("berkas",);
+            $table->integer("pagu",);
+            $table->string("keterangan",)->nullable();
             $table->timestamps();
         });
     }

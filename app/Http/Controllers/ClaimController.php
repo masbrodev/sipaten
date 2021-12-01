@@ -14,7 +14,8 @@ class ClaimController extends Controller
      */
     public function index()
     {
-        //
+        $data['cl'] = Claim::all();
+        return view('pages.claim.data', $data);
     }
 
     /**
@@ -24,7 +25,10 @@ class ClaimController extends Controller
      */
     public function create()
     {
-        //
+        $count = Claim::count();
+        $data['id'] = ($count == 0) ? 1 : Claim::all()->last()->id + 1;
+
+        return view('pages.claim.add', $data);
     }
 
     /**
@@ -35,7 +39,12 @@ class ClaimController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        if ($request->ajax()) {
+            Claim::create($input);
+        }
+
+        return redirect(route('claim.create'));
     }
 
     /**
