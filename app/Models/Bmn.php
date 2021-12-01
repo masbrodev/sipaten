@@ -11,7 +11,7 @@ class Bmn extends Model
     protected $table = 'bmns';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'pagu_id',
+        'kode_pagu',
         'kode_barang',
         'nama_barang',
         'merk_type',

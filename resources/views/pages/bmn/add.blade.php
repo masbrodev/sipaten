@@ -24,7 +24,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <label>Kode Pagu<span class="text-danger">*</span></label>
-                                        <select class="custom-select" name="pagu_id" id="pagu_id">
+                                        <select class="custom-select" name="kode_pagu" id="kode_pagu">
                                             @foreach($pagu as $a)
                                             <option value="{{ $a->kode_pagu }}" >{{ $a->kode_pagu }} | {{ $a->uraian }}</option>
                                             @endforeach
