@@ -34,7 +34,7 @@
                                     @foreach($bmn as $a)
                                     <tr data-toggle="modal" data-target="#edit-bmn{{$a->id}}">
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $a->pagu_id }}</td>
+                                        <td>{{ $a->kode_pagu }}</td>
                                         <td>{{ $a->kode_barang }}</td>
                                         <td>{{ $a->nama_barang }}</td>
                                         <td>{{ $a->merk_type }}</td>
