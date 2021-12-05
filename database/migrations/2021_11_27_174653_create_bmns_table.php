@@ -19,12 +19,10 @@ class CreateBmnsTable extends Migration
             $table->integer("kode_barang");
             $table->string("nama_barang");
             $table->string("merk_type");
-            $table->integer("nilai");
             $table->integer("tahun_peroleh");
             $table->string("kondisi");
             $table->string("lokasi")->nullable();
             $table->string("pengurus")->nullable();
-            $table->integer("pagu")->nullable();
             $table->string("keterangan")->nullable();
             $table->timestamps();
         });

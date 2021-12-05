@@ -40,43 +40,30 @@
                                         <input type="text" class="form-control" value="{{ $bmn->merk_type }}" name="merk_type" id="merk_type" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                     </div>
                                     <div class="col-sm-6">
-                                        <label>Nilai</label>
-                                        <input type="text" class="form-control" value="{{ $bmn->nilai }}" name="nilai" id="nomor_agenda" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                        <label>Tahun Peroleh</label>
+                                        <input type="text" class="form-control" value="{{ $bmn->tahun_peroleh }}" name="tahun_peroleh" id="tahun_peroleh" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>Tahun Peroleh</label>
-                                        <input type="text" class="form-control" value="{{ $bmn->tahun_peroleh }}" name="tahun_peroleh" id="tahun_peroleh" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
-                                    </div>
                                     <div class="col-sm-6">
                                         <label>Kondisi</label>
                                         <input type="text" class="form-control" value="{{ $bmn->kondisi }}" name="kondisi" id="kondisi" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
                                     <div class="col-sm-6">
                                         <label>Lokasi</label>
                                         <input type="text" class="form-control" value="{{ $bmn->lokasi }}" name="lokasi" id="lokasi" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                     </div>
-                                    <div class="col-sm-6">
-                                        <label>Pengurus</label>
-                                        <input type="text" class="form-control" value="{{ $bmn->pengurus }}" name="pengurus" id="pengurus" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
-                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <label>Pagu</label>
-                                        <input type="text" class="form-control" value="{{ $bmn->pagu }}" name="pagu" id="pagu" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                        <label>Pengurus</label>
+                                        <input type="text" class="form-control" value="{{ $bmn->pengurus }}" name="pengurus" id="pengurus" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Keterangan</label>

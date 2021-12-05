@@ -26,7 +26,7 @@
                                         <label>Kode Pagu<span class="text-danger">*</span></label>
                                         <select class="custom-select" name="kode_pagu" id="kode_pagu">
                                             @foreach($pagu as $a)
-                                            <option value="{{ $a->kode_pagu }}" >{{ $a->kode_pagu }} | {{ $a->uraian }}</option>
+                                            <option value="{{ $a->kode_pagu }}">{{ $a->kode_pagu }} | {{ $a->uraian }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -53,43 +53,30 @@
                                         <input type="text" class="form-control" name="merk_type" id="merk_type" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                     </div>
                                     <div class="col-sm-6">
-                                        <label>Nilai <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="nilai" id="nomor_agenda" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                        <label>Tahun Peroleh <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="tahun_peroleh" id="tahun_peroleh" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>Tahun Peroleh <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="tahun_peroleh" id="tahun_peroleh" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
-                                    </div>
                                     <div class="col-sm-6">
                                         <label>Kondisi <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" name="kondisi" id="kondisi" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
                                     <div class="col-sm-6">
                                         <label>Lokasi <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" name="lokasi" id="lokasi" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                     </div>
-                                    <div class="col-sm-6">
-                                        <label>Pengurus <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="pengurus" id="pengurus" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
-                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <label>Pagu <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="pagu" id="pagu" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                        <label>Pengurus <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="pengurus" id="pengurus" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Keterangan</label>

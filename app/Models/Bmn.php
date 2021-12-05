@@ -15,12 +15,10 @@ class Bmn extends Model
         'kode_barang',
         'nama_barang',
         'merk_type',
-        'nilai',
         'tahun_peroleh',
         'kondisi',
         'lokasi',
         'pengurus',
-        'pagu',
         'keterangan',
     ];
 }
