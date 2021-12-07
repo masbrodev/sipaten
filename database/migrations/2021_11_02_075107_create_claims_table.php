@@ -15,10 +15,14 @@ class CreateClaimsTable extends Migration
     {
         Schema::create('claims', function (Blueprint $table) {
             $table->id();
-            $table->string("kode");
+            $table->integer("bmn_id");
+            $table->integer("user_id");
+            $table->string("kode_claim");
             $table->string("nota_dinas");
             $table->integer("nilai");
-            $table->string("keterangan")->nullable();
+            $table->longText("keterangan")->nullable();
+            $table->longText("tindak_lanjut")->nullable();
+            $table->string("status")->nullable();
             $table->timestamps();
         });
     }

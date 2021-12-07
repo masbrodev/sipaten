@@ -38,43 +38,30 @@
                                     <input type="text" class="form-control" value="{{ $bmn->merk_type }}" name="merk_type" id="merk_type" disabled>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label>Nilai</label>
-                                    <input type="text" class="form-control" value="{{ $bmn->nilai }}" name="nilai" id="nomor_agenda" disabled>
+                                    <label>Tahun Peroleh</label>
+                                    <input type="text" class="form-control" value="{{ $bmn->tahun_peroleh }}" name="tahun_peroleh" id="tahun_peroleh" disabled>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-sm-6">
-                                    <label>Tahun Peroleh</label>
-                                    <input type="text" class="form-control" value="{{ $bmn->tahun_peroleh }}" name="tahun_peroleh" id="tahun_peroleh" disabled>
-                                </div>
                                 <div class="col-sm-6">
                                     <label>Kondisi</label>
                                     <input type="text" class="form-control" value="{{ $bmn->kondisi }}" name="kondisi" id="kondisi" disabled>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="row">
                                 <div class="col-sm-6">
                                     <label>Lokasi</label>
                                     <input type="text" class="form-control" value="{{ $bmn->lokasi }}" name="lokasi" id="lokasi" disabled>
                                 </div>
-                                <div class="col-sm-6">
-                                    <label>Pengurus</label>
-                                    <input type="text" class="form-control" value="{{ $bmn->pengurus }}" name="pengurus" id="pengurus" disabled>
-                                </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label>Pagu</label>
-                                    <input type="text" class="form-control" value="{{ $bmn->pagu }}" name="pagu" id="pagu" disabled>
+                                    <label>Pengurus</label>
+                                    <input type="text" class="form-control" value="{{ $bmn->pengurus }}" name="pengurus" id="pengurus" disabled>
                                 </div>
                                 <div class="col-sm-6">
                                     <label>Keterangan</label>
@@ -87,9 +74,11 @@
                         <form action="{{ route('bmn.destroy', $bmn->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <div class="btn-group">
-                                <a class="btn btn-outline-success" href="{{ route('bmn.edit', $bmn->id) }}"><i class="fa fa-cog"></i> Edit</a>
-                                <button type="submit" class="btn btn-outline-danger"><i class="fa fa-trash"></i> Hapus</button>
+                            <div class="text-right">
+                                <div class="btn-group">
+                                    <a class="btn btn-outline-success" href="{{ route('bmn.edit', $bmn->id) }}"><i class="fa fa-cog"></i> Edit</a>
+                                    <button type="submit" class="btn btn-outline-danger"><i class="fa fa-trash"></i> Hapus</button>
+                                </div>
                             </div>
                         </form>
                     </div>

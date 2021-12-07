@@ -15,12 +15,13 @@ class CreatePagusTable extends Migration
     {
         Schema::create('pagus', function (Blueprint $table) {
             $table->id();
-            $table->string("kode_pagu",);
-            $table->string("uraian",);
-            $table->string("jenis_volume",);
-            $table->integer("jumlah_volume",);
-            $table->integer("nilai",);
-            $table->integer("pagu_anggaran",);
+            $table->string("kode_pagu");
+            $table->string("uraian");
+            $table->string("jenis_volume");
+            $table->integer("jumlah_volume");
+            $table->integer("nilai");
+            $table->bigInteger("pagu_anggaran");
+            $table->bigInteger("sisa");
             $table->timestamps();
         });
     }

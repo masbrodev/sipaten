@@ -16,7 +16,7 @@
                 <!-- general form elements -->
                 <div class="card card-danger">
                     <div class="card-header">
-                        <h3 class="card-title">Tambah Claim</h3>
+                        <h3 class="card-title">Edit Claim</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -28,6 +28,7 @@
                                     <div class="col-sm-12">
                                         <label>Pilih BMN<span class="text-danger">*</span></label>
                                         <select class="custom-select" name="bmn_id" id="bmn_id">
+                                            <option selected value="{{ $pagu->id }}">{{ $pagu->id }} | {{ $pagu->kode_barang }} | {{ $pagu->nama_barang }} | {{ $pagu->merk_type }} | {{ $pagu->lokasi }} | {{ $pagu->pengurus }} | {{ $pagu->keterangan }}</option>
                                             @foreach($bmn as $a)
                                             <option value="{{ $a->id }}">{{ $a->kode_barang }} | {{ $a->nama_barang }} | {{ $a->merk_type }} | {{ $a->lokasi }} | {{ $a->pengurus }} | {{ $a->keterangan }}</option>
                                             @endforeach
@@ -39,12 +40,11 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label>Nota Dinas<span class="text-danger">*</span></label>
-                                        <input type="hidden" name="kode_claim" id="kode_claim" value="CL{{rand()}}">
-                                        <input type="text" class="form-control" name="nota_dinas" id="nota_dinas" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                        <input type="text" class="form-control" value="{{ $cl->nota_dinas }}" name="nota_dinas" id="nota_dinas" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Nilai <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="nilai" id="nilai" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                        <input type="text" class="form-control" value="{{ $cl->nilai }}" name="nilai" id="nilai" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <label>Keterangan</label>
-                                        <input type="text" class="form-control" name="keterangan" id="keterangan">
+                                        <input type="text" class="form-control" value="{{ $cl->keterangan }}" name="keterangan" id="keterangan">
                                     </div>
                                 </div>
                             </div>
@@ -131,10 +131,35 @@
 
         init: function() {
             myDropzone = this;
+
+            $.ajax({
+                url: "{{ route('cberkas.show', $cl->id) }}",
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    //console.log(data);
+                    $.each(data, function(key, value) {
+
+                        var file = {
+                            name: value.name,
+                            size: value.size
+                        };
+                        myDropzone.options.addedfile.call(myDropzone, file);
+                        myDropzone.options.thumbnail.call(myDropzone, file, "/pdf.png");
+                        // myDropzone.emit("complete", file);
+                    });
+                },
+
+                error: function(error) {
+                    console.log(error);
+                }
+
+            });
+
             $("#form-tambah").submit(function() {
                 $.ajax({
                     async: true,
-                    url: "{{ route('claim.store') }}",
+                    url: "{{ route('claim.update', $cl->id) }}",
                     type: 'POST',
                     data: {
                         'bmn_id': $('#bmn_id').val(),
@@ -162,15 +187,9 @@
                 })
             });
 
-            this.on("addedfile", function(file) {
-                if (!file.type.match(/image.*/)) {
-                    myDropzone.emit("thumbnail", file, "/pdf.png");
-                }
-            });
-
 
             this.on('sending', function(file, xhr, formData) {
-                formData.append('id', '{{ $id }}');
+                formData.append('id', '{{ $cl->id }}');
                 console.log(file)
             });
 

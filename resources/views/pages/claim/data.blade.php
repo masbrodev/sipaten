@@ -24,17 +24,25 @@
                                     <tr>
                                         <th style="width: 10px">#</th>
                                         <th>Kode</th>
+                                        <th>Pagu</th>
+                                        <th>Dari</th>
                                         <th>Nota Dinas</th>
                                         <th>Nilai</th>
+                                        <th>Keterangan</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($cl as $a)
-                                    <tr data-toggle="modal" data-target="#edit-bmn{{$a->id}}">
+                                    <tr onclick="window.location.href=`{{route('claim.edit', $a->id)}}`">
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $a->kode }}</td>
+                                        <td>{{ $a->bmn_id }}</td>
+                                        <td>{{ $a->kode_claim }}</td>
+                                        <td>{{ $a->user_id }}</td>
                                         <td>{{ $a->nota_dinas }}</td>
                                         <td>{{ $a->nilai }}</td>
+                                        <td>{{ $a->keterangan }}</td>
+                                        <td>{{ $a->status }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

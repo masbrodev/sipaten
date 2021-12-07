@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BerkasClaim;
+use App\Models\Claim;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -59,9 +60,32 @@ class BerkasClaimController extends Controller
      * @param  \App\Models\BerkasClaim  $berkasClaim
      * @return \Illuminate\Http\Response
      */
-    public function show(BerkasClaim $berkasClaim)
+    public function show($berkasClaim)
     {
-        //
+        $data['cl'] = Claim::where('id', $berkasClaim)->first();
+
+        $data['berkas'] = BerkasClaim::where('claim_id', $data['cl']->id)->get();
+
+
+        foreach ($data['berkas'] as $berkas) {
+            $namaBerkas[] = $berkas['nama_berkas'];
+            $lokasi[] = $berkas['lokasi'];
+        }
+
+        $f = 'berkas/' . $lokasi[0] . '/';
+        $storeFolder = public_path('berkas/' . $lokasi[0]);
+        $files = scandir($storeFolder);
+
+        foreach ($files as $file) {
+            if ($file != '.' && $file != '..' && in_array($file, $namaBerkas)) {
+                $obj['name'] = $file;
+                $file_path = public_path($f) . $file;
+                $obj['size'] = filesize($file_path);
+                $obj['path'] = url($f . $file);
+                $datas[] = $obj;
+            }
+        }
+        return $datas;
     }
 
     /**

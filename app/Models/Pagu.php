@@ -17,5 +17,6 @@ class Pagu extends Model
         "jumlah_volume",
         "nilai",
         "pagu_anggaran",
+        "sisa",
     ];
 }

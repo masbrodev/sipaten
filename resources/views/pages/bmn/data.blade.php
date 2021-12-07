@@ -32,7 +32,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach($bmn as $a)
-                                    <tr data-toggle="modal" data-target="#edit-bmn{{$a->id}}">
+                                    <tr onclick="window.location.href=`{{ route('bmn.show', $a->id) }}`">
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $a->kode_pagu }}</td>
                                         <td>{{ $a->kode_barang }}</td>

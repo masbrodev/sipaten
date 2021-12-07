@@ -12,9 +12,13 @@ class Claim extends Model
     protected $table = 'claims';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'kode',
+        'bmn_id',
+        'user_id',
+        'kode_claim',
         'nota_dinas',
         'nilai',
         'keterangan',
+        'tindak_lanjut',
+        'status',
     ];
 }

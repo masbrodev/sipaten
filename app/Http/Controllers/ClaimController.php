@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bmn;
 use App\Models\Claim;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class ClaimController extends Controller
      */
     public function index()
     {
-        $data['cl'] = Claim::all();
+        $data['cl'] = Claim::orderBy('updated_at', 'DESC')->get();
         return view('pages.claim.data', $data);
     }
 
@@ -26,6 +27,7 @@ class ClaimController extends Controller
     public function create()
     {
         $count = Claim::count();
+        $data['bmn'] = Bmn::all();
         $data['id'] = ($count == 0) ? 1 : Claim::all()->last()->id + 1;
 
         return view('pages.claim.add', $data);
@@ -64,9 +66,13 @@ class ClaimController extends Controller
      * @param  \App\Models\Claim  $claim
      * @return \Illuminate\Http\Response
      */
-    public function edit(Claim $claim)
+    public function edit($claim)
     {
-        //
+        $data['bmn'] = Bmn::all();
+        $data['cl'] = Claim::where('id', $claim)->first();
+        $data['pagu'] = Bmn::where('id', $data['cl']->bmn_id)->first();
+        // return $data;
+        return view('pages.claim.edit', $data);
     }
 
     /**
@@ -76,9 +82,12 @@ class ClaimController extends Controller
      * @param  \App\Models\Claim  $claim
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Claim $claim)
+    public function update(Request $request, $claim)
     {
-        //
+        $input = $request->all();
+        Claim::find($claim)->update($input);
+
+        return redirect(route('claim.index'));
     }
 
     /**

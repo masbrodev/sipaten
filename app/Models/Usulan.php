@@ -12,10 +12,10 @@ class Usulan extends Model
     protected $table = 'usulans';
     protected $primaryKey = 'id';
     protected $fillable = [
+        'bmn_id',
         'kode',
         'nota_dinas',
-        'berkas',
-        'pagu',
+        'nilai',
         'keterangan',
      ];
 }

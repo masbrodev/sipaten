@@ -96,7 +96,5 @@ class BmnController extends Controller
         } else {
             return redirect()->back();
         }
-
-        // $bmn->delete();
     }
 }

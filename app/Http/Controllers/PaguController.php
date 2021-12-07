@@ -37,13 +37,15 @@ class PaguController extends Controller
      */
     public function store(Request $request)
     {
+        $pagu = $request->nilai * $request->jumlah_volume;
         Pagu::create([
             'kode_pagu' => $request->kode_pagu,
             'uraian' => $request->uraian,
             'jenis_volume' => $request->jenis_volume,
             'jumlah_volume' => $request->jumlah_volume,
             'nilai' => $request->nilai,
-            'pagu_anggaran' => $request->nilai * $request->jumlah_volume,
+            'pagu_anggaran' => $pagu,
+            'sisa' => $pagu,
         ]);
 
         return redirect(route('pagu.index'));
@@ -55,9 +57,10 @@ class PaguController extends Controller
      * @param  \App\Models\Pagu  $pagu
      * @return \Illuminate\Http\Response
      */
-    public function show(Pagu $pagu)
+    public function show($pagu)
     {
-        //
+        $pagu = Pagu::where('id', $pagu)->first();
+        return view('pages.pagu.show', ['pagu' => $pagu]);
     }
 
     /**
@@ -66,9 +69,10 @@ class PaguController extends Controller
      * @param  \App\Models\Pagu  $pagu
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pagu $pagu)
+    public function edit($pagu)
     {
-        //
+        $pagu = Pagu::where('id', $pagu)->first();
+        return view('pages.pagu.edit', ['pagu' => $pagu]);
     }
 
     /**
@@ -78,9 +82,12 @@ class PaguController extends Controller
      * @param  \App\Models\Pagu  $pagu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pagu $pagu)
+    public function update(Request $request,$pagu)
     {
-        //
+        $input = $request->all();
+        Pagu::find($pagu)->update($input);
+
+        return redirect(route('pagu.index'));
     }
 
     /**
@@ -89,8 +96,14 @@ class PaguController extends Controller
      * @param  \App\Models\Pagu  $pagu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pagu $pagu)
+    public function destroy($pagu)
     {
-        //
+        $data = Pagu::where('id', $pagu)->first();
+        if ($data) {
+            $data->delete();
+            return redirect()->route('pagu.index');
+        } else {
+            return redirect()->back();
+        }
     }
 }

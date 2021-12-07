@@ -13,20 +13,42 @@
                 <!-- general form elements -->
                 <div class="card card-danger">
                     <div class="card-header">
-                        <h3 class="card-title">Data BMN {{ $bmn->kode_barang }}</h3>
+                        <h3 class="card-title">Pagu {{ $pagu->kode_pagu }}</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
                     <div class="card-body">
                         <div class="form-group">
                             <div class="row">
+                                <div class="col-sm-12">
+                                    <label>Uraian</label>
+                                    <input type="text" class="form-control" name="uraian" id="uraian" disabled value="{{ $pagu->uraian }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
                                 <div class="col-sm-6">
-                                    <label>Kode Barang</label>
-                                    <input type="text" class="form-control" value="{{ $bmn->kode_barang }}" name="kode_barang" id="kode_barang" disabled>
+                                    <label>Kode</label>
+                                    <input type="text" class="form-control" name="kode_pagu" id="kode_pagu" disabled value="{{ $pagu->kode_pagu }}">
                                 </div>
                                 <div class="col-sm-6">
-                                    <label>Nama Barang</label>
-                                    <input type="text" class="form-control" value="{{ $bmn->nama_barang }}" name="nama_barang" id="nama_barang" disabled>
+                                    <label>Jenis Volume (singkatan)</label>
+                                    <input type="text" class="form-control" name="jenis_volume" id="jenis_volume" disabled value="{{ $pagu->jenis_volume }}">
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>Jumlah Volume</label>
+                                    <input type="text" class="form-control" name="jumlah_volume" id="jumlah_volume" disabled value="{{ $pagu->jumlah_volume }}">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Nilai (satuan)</label>
+                                    <input type="text" class="form-control" name="nilai" id="nilai" disabled value="{{ $pagu->nilai }}">
                                 </div>
                             </div>
                         </div>
@@ -34,69 +56,34 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label>Merk / Type</label>
-                                    <input type="text" class="form-control" value="{{ $bmn->merk_type }}" name="merk_type" id="merk_type" disabled>
+                                    <label>Pagu Anggaran</label>
+                                    <input type="text" class="form-control" name="pagu_anggaran" id="pagu_anggaran" disabled value="{{ $pagu->pagu_anggaran }}">
                                 </div>
                                 <div class="col-sm-6">
-                                    <label>Nilai</label>
-                                    <input type="text" class="form-control" value="{{ $bmn->nilai }}" name="nilai" id="nomor_agenda" disabled>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <label>Tahun Peroleh</label>
-                                    <input type="text" class="form-control" value="{{ $bmn->tahun_peroleh }}" name="tahun_peroleh" id="tahun_peroleh" disabled>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label>Kondisi</label>
-                                    <input type="text" class="form-control" value="{{ $bmn->kondisi }}" name="kondisi" id="kondisi" disabled>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <label>Lokasi</label>
-                                    <input type="text" class="form-control" value="{{ $bmn->lokasi }}" name="lokasi" id="lokasi" disabled>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label>Pengurus</label>
-                                    <input type="text" class="form-control" value="{{ $bmn->pengurus }}" name="pengurus" id="pengurus" disabled>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <label>Pagu</label>
-                                    <input type="text" class="form-control" value="{{ $bmn->pagu }}" name="pagu" id="pagu" disabled>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label>Keterangan</label>
-                                    <input type="text" class="form-control" value="{{ $bmn->keterangan }}" name="keterangan" id="keterangan" disabled>
+                                    <label>Sisa</label>
+                                    <input type="text" class="form-control" name="sisa" id="sisa" disabled value="{{ $pagu->sisa }}">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <form action="{{ route('bmn.destroy', $bmn->id) }}" method="POST">
+                        <form action="{{ route('pagu.destroy', $pagu->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <div class="btn-group">
-                                <a class="btn btn-outline-success" href="{{ route('bmn.edit', $bmn->id) }}"><i class="fa fa-cog"></i> Edit</a>
-                                <button type="submit" class="btn btn-outline-danger"><i class="fa fa-trash"></i> Hapus</button>
+                            <div class="text-right">
+                                <div class="btn-group">
+                                    <a class="btn btn-outline-success" href="{{ route('pagu.edit', $pagu->id) }}"><i class="fa fa-cog"></i> Edit</a>
+                                    <button type="submit" class="btn btn-outline-danger"><i class="fa fa-trash"></i> Hapus</button>
+                                </div>
                             </div>
                         </form>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
 @endsection

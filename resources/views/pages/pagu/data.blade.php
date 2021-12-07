@@ -28,23 +28,25 @@
                                         <th>J/V</th>
                                         <th>nilai</th>
                                         <th>Pagu</th>
+                                        <th>Sisa</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($pagu as $a)
-                                    <tr data-toggle="modal" data-target="#edit-bmn{{$a->id}}">
+                                    <tr onclick="window.location.href=`{{ route('pagu.show',$a->id) }}`">
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $a->kode_pagu }}</td>
                                         <td>{{ $a->uraian }}</td>
                                         <td>{{ $a->jumlah_volume }}</td>
                                         <td>@rp( $a->nilai )</td>
                                         <td>@rp( $a->pagu_anggaran )</td>
+                                        <td>@rp( $a->sisa )</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td class="right" colspan="5">Total:</td>
+                                        <td class="right" colspan="6">Total:</td>
                                         <td class="right">@rp($total)</td>
                                     </tr>
                                 </tfoot>
