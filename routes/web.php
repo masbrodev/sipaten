@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\BerkasClaimController;
+use App\Http\Controllers\BerkasUsulanController;
 use App\Http\Controllers\BmnController;
 use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\PaguController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UsulanController;
+use App\Models\Transaksi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +30,9 @@ Route::resource('bmn', BmnController::class);
 Route::resource('claim', ClaimController::class);
 Route::resource('usulan', UsulanController::class);
 Route::resource('pagu', PaguController::class);
+Route::resource('transaksi', TransaksiController::class);
 Route::resource('cberkas', BerkasClaimController::class);
+Route::resource('uberkas', BerkasUsulanController::class);
 
 Auth::routes();
 

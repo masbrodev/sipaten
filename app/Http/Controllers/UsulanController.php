@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bmn;
 use App\Models\Usulan;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class UsulanController extends Controller
      */
     public function index()
     {
-        $data['us'] = Usulan::all();
+        $data['us'] = Usulan::orderBy('created_at', 'DESC')->get();
         return view('pages.usulan.data', $data);
     }
 
@@ -25,8 +26,10 @@ class UsulanController extends Controller
      */
     public function create()
     {
-        return view('pages.usulan.add');
-
+        $count = Usulan::count();
+        $data['bmn'] = Bmn::all();
+        $data['id'] = ($count == 0) ? 1 : Usulan::all()->last()->id + 1;
+        return view('pages.usulan.add', $data);
     }
 
     /**
@@ -38,7 +41,9 @@ class UsulanController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        Usulan::create($input);
+        if ($request->ajax()) {
+            Usulan::create($input);
+        }
 
         return redirect(route('usulan.create'));
     }
@@ -60,9 +65,13 @@ class UsulanController extends Controller
      * @param  \App\Models\Usulan  $usulan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Usulan $usulan)
+    public function edit($usulan)
     {
-        //
+        $data['bmn'] = Bmn::all();
+        $data['us'] = Usulan::where('id', $usulan)->first();
+        $data['bmnfix'] = Bmn::where('id', $data['us']->bmn_id)->first();
+        // return $data;
+        return view('pages.usulan.edit', $data);
     }
 
     /**
@@ -72,9 +81,12 @@ class UsulanController extends Controller
      * @param  \App\Models\Usulan  $usulan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Usulan $usulan)
+    public function update(Request $request, $usulan)
     {
-        //
+        $input = $request->all();
+        Usulan::find($usulan)->update($input);
+
+        return redirect(route('usulan.index'));
     }
 
     /**

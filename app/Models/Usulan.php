@@ -13,9 +13,12 @@ class Usulan extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'bmn_id',
-        'kode',
+        'user_id',
+        'kode_usulan',
         'nota_dinas',
         'nilai',
         'keterangan',
+        'tindak_lanjut',
+        'status',
      ];
 }

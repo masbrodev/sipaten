@@ -18,8 +18,9 @@
                     <!-- /.card-header -->
                     <!-- form start -->
                     <div class="card-body">
-                        <form id="form-tambah" action="{{ route('bmn.store') }}" method="POST">
+                        <form id="form-tambah" action="{{ route('bmn.update', $bmn->id) }}" method="POST">
                             @csrf
+                            @method('put')
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-6">

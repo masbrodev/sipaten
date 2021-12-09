@@ -65,7 +65,6 @@ class BmnController extends Controller
     public function edit($bmn)
     {
         $data['bmn'] = Bmn::where('id', $bmn)->first();
-        // return $data;
         return view('pages.bmn.edit', $data);
     }
 
@@ -76,9 +75,12 @@ class BmnController extends Controller
      * @param  \App\Models\Kategori_bmn  $bmn
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Bmn $bmn)
+    public function update(Request $request, $bmn)
     {
-        //
+        $input = $request->all();
+        Bmn::find($bmn)->update($input);
+
+        return redirect(route('bmn.index'));
     }
 
     /**

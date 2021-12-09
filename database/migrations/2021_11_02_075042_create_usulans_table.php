@@ -16,10 +16,13 @@ class CreateUsulansTable extends Migration
         Schema::create('usulans', function (Blueprint $table) {
             $table->id();
             $table->integer("bmn_id");
-            $table->string("kode");
+            $table->integer("user_id");
+            $table->string("kode_usulan");
             $table->string("nota_dinas");
-            $table->integer("nilai");
-            $table->string("keterangan")->nullable();
+            $table->integer("nilai")->nullable();
+            $table->longText("keterangan")->nullable();
+            $table->longText("tindak_lanjut")->nullable();
+            $table->string("status")->nullable();
             $table->timestamps();
         });
     }

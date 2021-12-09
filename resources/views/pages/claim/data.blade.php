@@ -23,8 +23,8 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
-                                        <th>Kode</th>
-                                        <th>Pagu</th>
+                                        <th>Kode BMN</th>
+                                        <th>Kode Claim</th>
                                         <th>Dari</th>
                                         <th>Nota Dinas</th>
                                         <th>Nilai</th>
@@ -34,7 +34,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach($cl as $a)
-                                    <tr onclick="window.location.href=`{{route('claim.edit', $a->id)}}`">
+                                    <tr onclick="window.location.href=`{{route('claim.show', $a->id)}}`">
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $a->bmn_id }}</td>
                                         <td>{{ $a->kode_claim }}</td>

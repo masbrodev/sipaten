@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'BMN ITJEN',
+    'title' => 'SIPATEN',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>BMN</b> KEMENDESA',
+    'logo' => '<b>SIPATEN</b> ITJEN',
     'logo_img' => 'logo.png',
     'logo_img_class' => 'brand-image',
     'logo_img_xl' => null,
@@ -102,13 +102,13 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-success',
+    'classes_auth_card' => 'card-outline card-danger',
     'classes_auth_header' => '',
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
     'classes_auth_icon' => '',
-    'classes_auth_btn' => 'btn-flat btn-success',
-    'login_message' => 'Aplikasi SP-ITJEN',
+    'classes_auth_btn' => 'btn-outline-danger',
+    'login_message' => 'SIPATEN',
 
     /*
     |--------------------------------------------------------------------------
@@ -226,22 +226,6 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
-        [
-            'type'         => 'fullscreen-widget',
-            'topnav_right' => true,
-        ],
-
-        // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -255,46 +239,52 @@ return [
         ['header' => 'Pagu'],
         [
             'text' => 'Pagu Anggaran',
-            'icon' => 'fas fa-fw fa-lock',
+            'icon' => 'fas fa-fw fa-wallet',
             'url'  => 'pagu',
         ],
         [
             'text' => 'Tambah Pagu',
-            'icon' => 'fas fa-fw fa-lock',
+            'icon' => 'fas fa-fw fa-money-bill',
             'url'  => 'pagu/create',
         ],
         ['header' => 'BMN'],
         [
             'text' => 'Data BMN',
-            'icon' => 'fas fa-fw fa-lock',
+            'icon' => 'fas fa-fw fa-network-wired',
             'url'  => 'bmn',
         ],
         [
             'text' => 'Tambah BMN',
-            'icon' => 'fas fa-fw fa-lock',
+            'icon' => 'fas fa-fw fa-cart-plus',
             'url'  => 'bmn/create',
         ],
         ['header' => 'Claim'],
         [
             'text' => 'Data Claim',
-            'icon' => 'fas fa-fw fa-lock',
+            'icon' => 'fas fa-fw fa-file-invoice-dollar',
             'url'  => 'claim',
         ],
         [
             'text' => 'Tambah Claim',
-            'icon' => 'fas fa-fw fa-lock',
+            'icon' => 'fas fa-fw fa-file-medical',
             'url'  => 'claim/create',
         ],
         ['header' => 'Usulan'],
         [
             'text' => 'Data Usulan',
-            'icon' => 'fas fa-fw fa-lock',
+            'icon' => 'fas fa-fw fa-file-signature',
             'url'  => 'usulan',
         ],
         [
             'text' => 'Tambah Usulan',
-            'icon' => 'fas fa-fw fa-lock',
+            'icon' => 'fas fa-fw fa-file-export',
             'url'  => 'usulan/create',
+        ],
+        ['header' => 'Transaksi'],
+        [
+            'text' => 'Data Transaksi',
+            'icon' => 'fas fa-fw fa-project-diagram',
+            'url'  => 'transaksi',
         ],
         ['header' => 'account_settings'],
         [

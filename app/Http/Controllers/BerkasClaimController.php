@@ -39,7 +39,7 @@ class BerkasClaimController extends Controller
     {
         $berkas = $request->file('file');
 
-        $name = uniqid() . '_berkasbmn_' . trim($berkas->getClientOriginalName());
+        $name = uniqid() . '_BC_' . trim($berkas->getClientOriginalName());
 
         $bulan = Carbon::now()->isoFormat('MMMM_Y');
 
@@ -62,30 +62,35 @@ class BerkasClaimController extends Controller
      */
     public function show($berkasClaim)
     {
-        $data['cl'] = Claim::where('id', $berkasClaim)->first();
+        $data['cl'] = Claim::where('id', $berkasClaim)->firstOrFail();
 
         $data['berkas'] = BerkasClaim::where('claim_id', $data['cl']->id)->get();
 
+        if (empty($data['berkas'][0])) {
+            return 'kosong';
+        } else {
 
-        foreach ($data['berkas'] as $berkas) {
-            $namaBerkas[] = $berkas['nama_berkas'];
-            $lokasi[] = $berkas['lokasi'];
-        }
 
-        $f = 'berkas/' . $lokasi[0] . '/';
-        $storeFolder = public_path('berkas/' . $lokasi[0]);
-        $files = scandir($storeFolder);
-
-        foreach ($files as $file) {
-            if ($file != '.' && $file != '..' && in_array($file, $namaBerkas)) {
-                $obj['name'] = $file;
-                $file_path = public_path($f) . $file;
-                $obj['size'] = filesize($file_path);
-                $obj['path'] = url($f . $file);
-                $datas[] = $obj;
+            foreach ($data['berkas'] as $berkas) {
+                $namaBerkas[] = $berkas['nama_berkas'];
+                $lokasi[] = $berkas['lokasi'];
             }
+
+            $f = 'berkas/' . $lokasi[0] . '/';
+            $storeFolder = public_path('berkas/' . $lokasi[0]);
+            $files = scandir($storeFolder);
+
+            foreach ($files as $file) {
+                if ($file != '.' && $file != '..' && in_array($file, $namaBerkas)) {
+                    $obj['name'] = $file;
+                    $file_path = public_path($f) . $file;
+                    $obj['size'] = filesize($file_path);
+                    $obj['path'] = url($f . $file);
+                    $datas[] = $obj;
+                }
+            }
+            return $datas;
         }
-        return $datas;
     }
 
     /**

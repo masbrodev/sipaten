@@ -16,7 +16,7 @@
                 <!-- general form elements -->
                 <div class="card card-danger">
                     <div class="card-header">
-                        <h3 class="card-title">Edit Claim</h3>
+                        <h3 class="card-title">Edit Usulan</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -40,11 +40,11 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label>Nota Dinas<span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" value="{{ $cl->nota_dinas }}" name="nota_dinas" id="nota_dinas" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                        <input type="text" class="form-control" value="{{ $us->nota_dinas }}" name="nota_dinas" id="nota_dinas" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                     </div>
                                     <div class="col-sm-6">
-                                        <label>Nilai <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" value="{{ $cl->nilai }}" name="nilai" id="nilai" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                        <label>Nilai</label>
+                                        <input type="text" class="form-control" value="{{ $us->nilai }}" name="nilai" id="nilai">
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <label>Keterangan</label>
-                                        <input type="text" class="form-control" value="{{ $cl->keterangan }}" name="keterangan" id="keterangan">
+                                        <input type="text" class="form-control" value="{{ $us->keterangan }}" name="keterangan" id="keterangan">
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +133,7 @@
             myDropzone = this;
 
             $.ajax({
-                url: "{{ route('cberkas.show', $cl->id) }}",
+                url: "{{ route('uberkas.show', $us->id) }}",
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
@@ -159,12 +159,12 @@
             $("#form-tambah").submit(function() {
                 $.ajax({
                     async: true,
-                    url: "{{ route('claim.update', $cl->id) }}",
+                    url: "{{ route('usulan.update', $us->id) }}",
                     type: 'POST',
                     data: {
                         'bmn_id': $('#bmn_id').val(),
                         'user_id': 2,
-                        'kode_claim': $('#kode_claim').val(),
+                        'kode_usulan': $('#kode_usulan').val(),
                         'nota_dinas': $('#nota_dinas').val(),
                         'nilai': $('#nilai').val(),
                         'keterangan': $('#keterangan').val(),
@@ -181,7 +181,7 @@
                     },
                     success: function() {
                         $.LoadingOverlay("hide");
-                        window.location.href = "{{ route('claim.index') }}";
+                        window.location.href = "{{ route('usulan.index') }}";
                     },
                     error: function(error) {
                         console.log(error);
@@ -191,7 +191,7 @@
 
 
             this.on('sending', function(file, xhr, formData) {
-                formData.append('id', '{{ $cl->id }}');
+                formData.append('id', '{{ $us->id }}');
                 console.log(file)
             });
 
@@ -200,7 +200,7 @@
                     var _this = this;
                     _this.removeAllFiles();
                     $.LoadingOverlay("hide");
-                    window.location.href = "{{ route('claim.index') }}";
+                    window.location.href = "{{ route('usulan.index') }}";
 
                 }
             });
