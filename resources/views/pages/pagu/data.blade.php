@@ -25,9 +25,10 @@
                                         <th style="width: 10px">#</th>
                                         <th>Kode</th>
                                         <th>Uraian</th>
-                                        <th>J/V</th>
+                                        <th>QTY</th>
                                         <th>nilai</th>
                                         <th>Pagu</th>
+                                        <th>Realisasi</th>
                                         <th>Sisa</th>
                                     </tr>
                                 </thead>
@@ -37,16 +38,17 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $a->kode_pagu }}</td>
                                         <td>{{ $a->uraian }}</td>
-                                        <td>{{ $a->jumlah_volume }}</td>
+                                        <td>{{ $a->jumlah_volume }} | {{ $a->jenis_volume }}</td>
                                         <td>@rp( $a->nilai )</td>
                                         <td>@rp( $a->pagu_anggaran )</td>
+                                        <td>0</td>
                                         <td>@rp( $a->sisa )</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td class="right" colspan="6">Total:</td>
+                                        <td class="right" colspan="7">Total:</td>
                                         <td class="right">@rp($total)</td>
                                     </tr>
                                 </tfoot>

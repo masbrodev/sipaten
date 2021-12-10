@@ -17,7 +17,7 @@ class AllSeeder extends Seeder
     {
         if (count(User::get()) == 0) {
             User::insert([
-                'name' => 'Sigit',
+                'name' => 'Sigit Setiyo Wibowo',
                 'uke' => 'Admin',
                 'nip' => '6868768768765',
                 'telepon' => '0812287669878',
