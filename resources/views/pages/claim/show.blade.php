@@ -71,7 +71,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label>Status</label>
-                                        <select class="custom-select" name="status" id="status" {{ $cl->status == 'selesai' ? 'disabled' : '' }}>
+                                        <select class="custom-select" name="status" id="status" {{ $cl->status == 'selesai' || 'ditolak' ? 'disabled' : '' }}>
                                             <option selected value="proses">Prores</option>
                                             <option value="diterima" {{ $cl->status == 'diterima' ? 'selected' : '' }}>Diterima</option>
                                             <option value="ditolak" {{ $cl->status == 'ditolak' ? 'selected' : '' }}>Ditolak</option>
@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Tindak Lanjut</label>
-                                        <input type="text" class="form-control" value="{{ $cl->tindak_lanjut }}" name="tindak_lanjut" id="tindak_lanjut" {{ $cl->status == 'selesai' ? 'disabled' : '' }}>
+                                        <input type="text" class="form-control" value="{{ $cl->tindak_lanjut }}" name="tindak_lanjut" id="tindak_lanjut" {{ $cl->status == 'selesai' || 'ditolak' ? 'disabled' : '' }}>
                                     </div>
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
                     <div class="card-footer">
                         <div class="text-right">
                             <div class="btn-group">
-                                <input type="{{ $cl->status == 'selesai' ? 'hidden' : 'submit' }}" form="form-show" id="tambah" name="tambah" value="Simpan" class="btn btn-outline-success">
+                                <input type="{{ $cl->status == 'selesai' || 'ditolak' ? 'hidden' : 'submit' }}" form="form-show" id="tambah" name="tambah" value="Simpan" class="btn btn-outline-success">
                                 <a class="btn btn-outline-secondary" href="{{ url()->previous() }}"><i class="fa fa-cog"></i> Kembali</a>
                             </div>
                         </div>
