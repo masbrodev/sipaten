@@ -27,7 +27,10 @@
                                         <th>Kode Barang</th>
                                         <th>Nama Barang</th>
                                         <th>Merk / Type </th>
+                                        <th>Tahun Peroleh</th>
                                         <th>Kondisi</th>
+                                        <th>Lokasi</th>
+                                        <th>Pengurus</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,7 +41,10 @@
                                         <td>{{ $a->kode_barang }}</td>
                                         <td>{{ $a->nama_barang }}</td>
                                         <td>{{ $a->merk_type }}</td>
+                                        <td>{{ $a->tahun_peroleh }}</td>
                                         <td>{{ $a->kondisi }}</td>
+                                        <td>{{ $a->lokasi }}</td>
+                                        <td>{{ $a->pengurus }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

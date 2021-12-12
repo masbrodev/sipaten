@@ -19,4 +19,9 @@ class Transaksi extends Model
         "nilai",
         "sisa",
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

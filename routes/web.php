@@ -7,7 +7,6 @@ use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\PaguController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UsulanController;
-use App\Models\Transaksi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 

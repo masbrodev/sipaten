@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BerkasUsulan;
 use App\Models\Bmn;
+use App\Models\Pagu;
+use App\Models\Transaksi;
+use App\Models\User;
 use App\Models\Usulan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UsulanController extends Controller
 {
@@ -13,9 +19,18 @@ class UsulanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
-        $data['us'] = Usulan::orderBy('created_at', 'DESC')->get();
+        $data['us'] = Auth::user()->role == 'a' ?
+        Usulan::with('user', 'bmn')->orderBy('created_at', 'DESC')->get() :
+        Usulan::with('user', 'bmn')->where('user_id', Auth::id())->orderBy('created_at', 'DESC')->get();
         return view('pages.usulan.data', $data);
     }
 
@@ -54,9 +69,15 @@ class UsulanController extends Controller
      * @param  \App\Models\Usulan  $usulan
      * @return \Illuminate\Http\Response
      */
-    public function show(Usulan $usulan)
+    public function show($usulan)
     {
-        //
+        $data['us'] = Usulan::where('id', $usulan)->first();
+        $data['bmnfix'] = Bmn::where('id', $data['us']->bmn_id)->first();
+        $data['berkas'] = BerkasUsulan::where('usulan_id', $data['us']->id)->get();
+        $data['user'] = User::where('id', $data['us']->user_id)->first();
+
+        // return $data;
+        return view('pages.usulan.show', $data);
     }
 
     /**
@@ -84,7 +105,33 @@ class UsulanController extends Controller
     public function update(Request $request, $usulan)
     {
         $input = $request->all();
+
+        $dataus = Usulan::where('id', $usulan)->first();
+        $databmn = Bmn::where('id', $dataus->bmn_id)->first();
+        $datapg = Pagu::where('kode_pagu', $databmn->kode_pagu)->first();
         Usulan::find($usulan)->update($input);
+
+        if ($request->status == 'selesai') {
+            DB::beginTransaction();
+
+            try {
+                Transaksi::Create([
+                    'kode_transaksi' => $dataus->kode_usulan,
+                    'user_id' => $dataus->user_id,
+                    'kode_pagu' => $databmn->kode_pagu,
+                    'jenis' => 'update',
+                    'status' => 'berhasil',
+                    'nilai' => $dataus->nilai,
+                    'sisa' => $datapg->sisa - $dataus->nilai,
+                ]);
+                Pagu::where('kode_pagu', $databmn->kode_pagu)->decrement('sisa', $dataus->nilai);
+
+
+                DB::commit();
+            } catch (\Exception $th) {
+                DB::rollBack();
+            }
+        }
 
         return redirect(route('usulan.index'));
     }

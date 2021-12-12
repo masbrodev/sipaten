@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransaksiController extends Controller
 {
@@ -12,9 +13,18 @@ class TransaksiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
-        $data['tr'] = Transaksi::orderBy('created_at', 'DESC')->get();
+        $data['tr'] = Auth::user()->role == 'a' ?
+            Transaksi::orderBy('created_at', 'DESC')->get() :
+            Transaksi::orderBy('created_at', 'DESC')->where('user_id', Auth::id())->get();
         return view('pages.transaksi.data', $data);
     }
 

@@ -16,14 +16,37 @@ class AllSeeder extends Seeder
     public function run()
     {
         if (count(User::get()) == 0) {
-            User::insert([
-                'name' => 'Sigit Setiyo Wibowo',
-                'uke' => 'Admin',
-                'nip' => '6868768768765',
-                'telepon' => '0812287669878',
-                'email' => 'a@gmail.com',
-                'password' => Hash::make(1),
-            ]);
+            User::insert(
+                [
+                    'name' => 'Sigit Setiyo Wibowo',
+                    'uke' => 'Admin',
+                    'nip' => '6868768768765',
+                    'telepon' => '0812287669878',
+                    'role' => 'a',
+                    'email' => 'a@gmail.com',
+                    'password' => Hash::make(1),
+                ],
+                [
+                    'name' => 'Budi',
+                    'uke' => 'IR 2',
+                    'nip' => '68687687765',
+                    'telepon' => '08287669878',
+                    'role' => 'u',
+                    'email' => 'u@gmail.com',
+                    'password' => Hash::make(1),
+                ]
+            );
+            User::insert(
+                [
+                    'name' => 'Budi',
+                    'uke' => 'IR 2',
+                    'nip' => '68687687765',
+                    'telepon' => '08287669878',
+                    'role' => 'u',
+                    'email' => 'u@gmail.com',
+                    'password' => Hash::make(1),
+                ]
+            );
         }
     }
 }

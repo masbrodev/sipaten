@@ -16,7 +16,7 @@
                 <!-- general form elements -->
                 <div class="card card-danger">
                     <div class="card-header">
-                        <h3 class="card-title">Data Claim <b>{{ $cl->kode_claim }}</b></h3>
+                        <h3 class="card-title">Data Usulan <b>{{ $us->kode_usulan }}</b></h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <hr>
-                        <form id="form-show" action="{{ route('claim.update', $cl->id) }}" method="POST">
+                        <form id="form-show" action="{{ route('usulan.update', $us->id) }}" method="POST">
                             @csrf
                             @method('put')
                             <div class="form-group">
@@ -49,11 +49,11 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label>Nota Dinas</label>
-                                        <input type="text" class="form-control" disabled value="{{ $cl->nota_dinas }}" name="nota_dinas" id="nota_dinas">
+                                        <input type="text" class="form-control" disabled value="{{ $us->nota_dinas }}" name="nota_dinas" id="nota_dinas">
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Nilai </label>
-                                        <input type="text" class="form-control" disabled value="{{ $cl->nilai }}" name="nilai" id="nilai">
+                                        <input type="text" class="form-control" disabled value="{{ $us->nilai }}" name="nilai" id="nilai">
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <label>Keterangan</label>
-                                        <input type="text" class="form-control" disabled value="{{ $cl->keterangan }}" name="keterangan" id="keterangan">
+                                        <input type="text" class="form-control" disabled value="{{ $us->keterangan }}" name="keterangan" id="keterangan">
                                     </div>
                                 </div>
                             </div>
@@ -72,16 +72,16 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label>Status</label>
-                                        <select class="custom-select" name="status" id="status" {{ $cl->status == 'selesai' || $cl->status == 'ditolak' ? 'disabled' : '' }}>
+                                        <select class="custom-select" name="status" id="status" {{ $us->status == 'selesai' || $us->status == 'ditolak' ? 'disabled' : '' }}>
                                             <option selected value="proses">Prores</option>
-                                            <option value="diterima" {{ $cl->status == 'diterima' ? 'selected' : '' }}>Diterima</option>
-                                            <option value="ditolak" {{ $cl->status == 'ditolak' ? 'selected' : '' }}>Ditolak</option>
-                                            <option value="selesai" {{ $cl->status == 'selesai' ? 'selected' : '' }}>Selesai</option>
+                                            <option value="diterima" {{ $us->status == 'diterima' ? 'selected' : '' }}>Diterima</option>
+                                            <option value="ditolak" {{ $us->status == 'ditolak' ? 'selected' : '' }}>Ditolak</option>
+                                            <option value="selesai" {{ $us->status == 'selesai' ? 'selected' : '' }}>Selesai</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Tindak Lanjut</label>
-                                        <input type="text" class="form-control" value="{{ $cl->tindak_lanjut }}" name="tindak_lanjut" id="tindak_lanjut" {{ $cl->status == 'selesai' || $cl->status == 'ditolak' ? 'disabled' : '' }}>
+                                        <input type="text" class="form-control" value="{{ $us->tindak_lanjut }}" name="tindak_lanjut" id="tindak_lanjut" {{ $us->status == 'selesai' || $us->status == 'ditolak' ? 'disabled' : '' }}>
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +118,7 @@
                     <div class="card-footer">
                         <div class="text-right">
                             <div class="btn-group">
-                                <input type="{{ $cl->status == 'selesai' || $cl->status == 'ditolak' ? 'hidden' : 'submit' }}" form="form-show" id="tambah" name="tambah" value="Simpan" class="btn btn-outline-success">
+                                <input type="{{ $us->status == 'selesai' || $us->status == 'ditolak' ? 'hidden' : 'submit' }}" form="form-show" id="tambah" name="tambah" value="Simpan" class="btn btn-outline-success">
                                 <a class="btn btn-outline-secondary" href="{{ url()->previous() }}"><i class="fa fa-cog"></i> Kembali</a>
                             </div>
                         </div>

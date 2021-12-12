@@ -38,7 +38,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $a->kode_transaksi }}</td>
                                         <td>{{ $a->kode_pagu }}</td>
-                                        <td>{{ $a->user_id }}</td>
+                                        <td>{{ $a->user->name }}</td>
                                         <td>{{ $a->jenis }}</td>
                                         <td>{{ $a->status }}</td>
                                         <td>{{ $a->nilai }}</td>

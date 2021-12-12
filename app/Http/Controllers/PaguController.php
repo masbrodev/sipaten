@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pagu;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class PaguController extends Controller
 {
@@ -12,10 +14,48 @@ class PaguController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
-        $data['pagu'] = Pagu::all();
-        $data['total'] = Pagu::sum('pagu_anggaran');
+        $datapagu = Pagu::all();
+        $data['total_pagu'] = Pagu::sum('pagu_anggaran');
+        $transaksi = Transaksi::groupBy('kode_pagu')
+            ->selectRaw("sum(nilai) as PAGU, kode_pagu")
+            // ->pluck('PAGU', 'kode_pagu');
+            ->get();
+        $transaksi2 = Transaksi::groupBy('kode_pagu')
+            ->selectRaw("sum(nilai) as PAGU, kode_pagu")
+            ->pluck('PAGU', 'kode_pagu');
+        $ppagu = collect();
+
+        $data['total_realisasi'] = Transaksi::where('status', 'berhasil')->sum('nilai');
+
+        $data['pagu'] = $ppagu;
+
+        foreach ($transaksi as $t) {
+            $ll[] = $t->kode_pagu;
+        }
+        foreach ($datapagu as $pg) {
+            $ppagu->push([
+                'id' => $pg->id,
+                'kode_pagu' => $pg->kode_pagu,
+                'uraian' => $pg->uraian,
+                'jumlah_volume' => $pg->jumlah_volume,
+                'jenis_volume' => $pg->jenis_volume,
+                'nilai' => $pg->nilai,
+                'pagu_anggaran' => $pg->pagu_anggaran,
+                'sisa' => $pg->sisa,
+                'realisasi' => in_array($pg->kode_pagu, $ll) ? $transaksi2[$pg->kode_pagu] : null,
+                'diperbaharui' => $pg->updated_at->diffForHumans(),
+            ]);
+        }
+        // return $total_realisasi;
         return view('pages.pagu.data', $data);
     }
 
@@ -60,7 +100,8 @@ class PaguController extends Controller
     public function show($pagu)
     {
         $pagu = Pagu::where('id', $pagu)->first();
-        return view('pages.pagu.show', ['pagu' => $pagu]);
+        $transaksi = Transaksi::with('user')->where('kode_pagu', $pagu->kode_pagu)->get();
+        return view('pages.pagu.show', ['pagu' => $pagu, 'transaksi' => $transaksi]);
     }
 
     /**
@@ -82,7 +123,7 @@ class PaguController extends Controller
      * @param  \App\Models\Pagu  $pagu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$pagu)
+    public function update(Request $request, $pagu)
     {
         $input = $request->all();
         Pagu::find($pagu)->update($input);

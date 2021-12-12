@@ -19,10 +19,12 @@ class ClaimFactory extends Factory
             30000,
             70000,
         ));
+        static $number = 1;
+
         return [
             'bmn_id' => $this->faker->randomDigitNotNull(),
             'user_id' => $this->faker->randomDigitNotNull(),
-            'kode_claim' => 'CL'.rand(),
+            'kode_claim' => 'CL'. $number,
             'nota_dinas' => $this->faker->domainName(),
             'nilai' => $nilai,
             'keterangan' => $this->faker->text(),

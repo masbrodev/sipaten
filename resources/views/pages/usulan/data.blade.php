@@ -32,11 +32,11 @@
                                 </thead>
                                 <tbody>
                                     @foreach($us as $a)
-                                    <tr onclick="window.location.href=`{{ route('usulan.edit', $a->id) }}`">
+                                    <tr onclick="window.location.href=`{{ route('usulan.show', $a->id) }}`">
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $a->bmn_id }}</td>
+                                        <td>{{ $a->bmn->kode_barang }}</td>
                                         <td>{{ $a->kode_usulan }}</td>
-                                        <td>{{ $a->user_id }}</td>
+                                        <td>{{ $a->user->name }}</td>
                                         <td>{{ $a->nota_dinas }}</td>
                                         <td>{{ $a->nilai }}</td>
                                         <td>{{ $a->keterangan }}</td>

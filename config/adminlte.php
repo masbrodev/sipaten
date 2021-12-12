@@ -231,21 +231,32 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+        // [
+        //     'text' => 'Dashboard',
+        //     'url'  => 'home',
+        //     'icon' => 'fa fa-cubes',
+        // ],
         [
-            'text' => 'Dashboard',
-            'url'  => 'home',
-            'icon' => 'fa fa-cubes',
+            'header' => 'Pagu',
+            'data' => [
+                'role' => 'a',
+            ],
         ],
-        ['header' => 'Pagu'],
         [
             'text' => 'Pagu Anggaran',
             'icon' => 'fas fa-fw fa-wallet',
             'url'  => 'pagu',
+            'data' => [
+                'role' => 'a',
+            ],
         ],
         [
             'text' => 'Tambah Pagu',
             'icon' => 'fas fa-fw fa-money-bill',
             'url'  => 'pagu/create',
+            'data' => [
+                'role' => 'a',
+            ],
         ],
         ['header' => 'BMN'],
         [
@@ -257,6 +268,9 @@ return [
             'text' => 'Tambah BMN',
             'icon' => 'fas fa-fw fa-cart-plus',
             'url'  => 'bmn/create',
+            'data' => [
+                'role' => 'a',
+            ],
         ],
         ['header' => 'Claim'],
         [
@@ -286,17 +300,17 @@ return [
             'icon' => 'fas fa-fw fa-project-diagram',
             'url'  => 'transaksi',
         ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
+        // ['header' => 'account_settings'],
+        // [
+        //     'text' => 'profile',
+        //     'url'  => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-user',
+        // ],
+        // [
+        //     'text' => 'change_password',
+        //     'url'  => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-lock',
+        // ],
 
     ],
 

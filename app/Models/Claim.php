@@ -21,4 +21,14 @@ class Claim extends Model
         'tindak_lanjut',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function bmn()
+    {
+        return $this->hasOne(User::class, 'id', 'bmn_id');
+    }
 }

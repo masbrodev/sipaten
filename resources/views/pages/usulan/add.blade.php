@@ -134,7 +134,7 @@
                     type: 'POST',
                     data: {
                         'bmn_id': $('#bmn_id').val(),
-                        'user_id': 2,
+                        'user_id': '{{Auth::id()}}',
                         'kode_usulan': $('#kode_usulan').val(),
                         'nota_dinas': $('#nota_dinas').val(),
                         'nilai': $('#nilai').val(),

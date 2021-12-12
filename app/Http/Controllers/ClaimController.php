@@ -9,6 +9,7 @@ use App\Models\Pagu;
 use App\Models\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\URL;
@@ -20,9 +21,18 @@ class ClaimController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
-        $data['cl'] = Claim::orderBy('created_at', 'DESC')->get();
+        $data['cl'] = Auth::user()->role == 'a' ?
+         Claim::with('user', 'bmn')->orderBy('created_at', 'DESC')->get():
+         Claim::with('user', 'bmn')->where('user_id', Auth::id())->orderBy('created_at', 'DESC')->get();
         return view('pages.claim.data', $data);
     }
 
