@@ -51,7 +51,7 @@ class PaguController extends Controller
                 'nilai' => $pg->nilai,
                 'pagu_anggaran' => $pg->pagu_anggaran,
                 'sisa' => $pg->sisa,
-                'realisasi' => in_array($pg->kode_pagu, $ll) ? $transaksi2[$pg->kode_pagu] : null,
+                'realisasi' =>  0,
                 'diperbaharui' => $pg->updated_at->diffForHumans(),
             ]);
         }
