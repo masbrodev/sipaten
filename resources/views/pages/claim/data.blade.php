@@ -36,7 +36,7 @@
                                     @foreach($cl as $a)
                                     <tr onclick="window.location.href=`{{route('claim.show', $a->id)}}`">
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $a->bmn_id }}</td>
+                                        <td>{{ $a->bmn->kode_barang }}</td>
                                         <td>{{ $a->kode_claim }}</td>
                                         <td>{{ $a->user->name }}</td>
                                         <td>{{ $a->nota_dinas }}</td>
