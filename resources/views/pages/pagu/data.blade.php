@@ -4,6 +4,7 @@
 @stop
 
 @section('content')
+@section('plugins.Datatables', true)
 
 <br>
 <section class="content">
@@ -19,7 +20,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover display table-sm" id="pagu">
+                            <table class="table table-hover display table-sm" id="sp">
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
@@ -40,7 +41,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $a['kode_pagu'] }}</td>
                                         <td>{{ $a['uraian'] }}</td>
-                                        <td>{{ $a['jumlah_volume'] }}</td>
+                                        <td>{!! $a['jumlah_volume'] == $a['jumlah_bmn'] ? $a['jumlah_volume'] : $a['jumlah_volume'] ."||". "<i class='fas fa-exclamation-circle' style='color: red;'></i>".$a['jumlah_bmn'] !!}</td>
                                         <td>{{ $a['jenis_volume'] }}</td>
                                         <td>@rp( $a['nilai'] )</td>
                                         <td>@rp( $a['pagu_anggaran'] )</td>
@@ -74,5 +75,22 @@
 @section('adminlte_js')
 <script>
 
+</script>
+@endsection
+@section('adminlte_js')
+<script>
+    $(function() {
+        $("#sp").DataTable({
+            language: {
+                search: 'Cari:',
+                previous: 'Cari:',
+                lengthMenu: 'Tampilkan _MENU_ baris',
+                zeroRecords: 'Data Tidak Ditemukan',
+                info: 'Total data _MAX_',
+                infoEmpty: 'Data Kosong',
+                infoFiltered: '(filtered from _MAX_ total records)'
+            },
+        });
+    });
 </script>
 @endsection

@@ -21,4 +21,9 @@ class Bmn extends Model
         'pengurus',
         'keterangan',
     ];
+
+    public function pagu()
+    {
+        return $this->hasOne(Pagu::class, 'kode_pagu', 'kode_pagu');
+    }
 }

@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Nilai </label>
-                                        <input type="text" class="form-control" disabled value="{{ $us->nilai }}" name="nilai" id="nilai">
+                                        <input type="text" class="form-control"{{ $us->status == 'diterima' || $us->status == 'selesai' || $us->status == 'ditolak' ? 'disabled' : '' }} value="{{ $us->nilai }}" name="nilai" id="nilai">
                                     </div>
                                 </div>
                             </div>

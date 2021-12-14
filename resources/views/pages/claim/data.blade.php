@@ -4,6 +4,7 @@
 @stop
 
 @section('content')
+@section('plugins.Datatables', true)
 
 <br>
 <section class="content">
@@ -19,7 +20,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover display table-sm" id="tiket">
+                            <table class="table table-hover display table-sm" id="sp">
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
@@ -54,4 +55,21 @@
         </div>
     </div>
 </section>
+@endsection
+@section('adminlte_js')
+<script>
+    $(function() {
+        $("#sp").DataTable({
+            language: {
+                search: 'Cari:',
+                previous: 'Cari:',
+                lengthMenu: 'Tampilkan _MENU_ baris',
+                zeroRecords: 'Data Tidak Ditemukan',
+                info: 'Total data _MAX_',
+                infoEmpty: 'Data Kosong',
+                infoFiltered: '(filtered from _MAX_ total records)'
+            },
+        });
+    });
+</script>
 @endsection

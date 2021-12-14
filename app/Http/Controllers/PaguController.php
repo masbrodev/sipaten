@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bmn;
 use App\Models\Pagu;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
@@ -51,11 +52,12 @@ class PaguController extends Controller
                 'nilai' => $pg->nilai,
                 'pagu_anggaran' => $pg->pagu_anggaran,
                 'sisa' => $pg->sisa,
-                'realisasi' => in_array($pg->kode_pagu, $ll) ? $transaksi2[$pg->kode_pagu] : null,
+                'jumlah_bmn' => Bmn::where('kode_pagu', $pg->kode_pagu)->count(),
+                'realisasi' => count($transaksi) == 0  ? 0 : (in_array($pg->kode_pagu, $ll) ? $transaksi2[$pg->kode_pagu] : null),
                 'diperbaharui' => $pg->updated_at->diffForHumans(),
             ]);
         }
-        // return $total_realisasi;
+        // return $transaksi;
         return view('pages.pagu.data', $data);
     }
 
@@ -101,7 +103,9 @@ class PaguController extends Controller
     {
         $pagu = Pagu::where('id', $pagu)->first();
         $transaksi = Transaksi::with('user')->where('kode_pagu', $pagu->kode_pagu)->get();
-        return view('pages.pagu.show', ['pagu' => $pagu, 'transaksi' => $transaksi]);
+        $bmn = Bmn::with('pagu')->where('kode_pagu', $pagu->kode_pagu)->get();
+        // return $bmn;
+        return view('pages.pagu.show', ['pagu' => $pagu, 'transaksi' => $transaksi, 'bmn' => $bmn]);
     }
 
     /**

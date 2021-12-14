@@ -29,6 +29,6 @@ class Claim extends Model
 
     public function bmn()
     {
-        return $this->hasOne(User::class, 'id', 'bmn_id');
+        return $this->hasOne(Bmn::class, 'id', 'bmn_id');
     }
 }
