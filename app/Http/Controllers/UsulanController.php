@@ -121,10 +121,10 @@ class UsulanController extends Controller
                     'kode_pagu' => $databmn->kode_pagu,
                     'jenis' => 'update',
                     'status' => 'berhasil',
-                    'nilai' => $dataus->nilai,
-                    'sisa' => $datapg->sisa - $dataus->nilai,
+                    'nilai' => $request->nilai,
+                    'sisa' => $datapg->sisa - $request->nilai,
                 ]);
-                Pagu::where('kode_pagu', $databmn->kode_pagu)->decrement('sisa', $dataus->nilai);
+                Pagu::where('kode_pagu', $databmn->kode_pagu)->decrement('sisa', $request->nilai);
 
 
                 DB::commit();

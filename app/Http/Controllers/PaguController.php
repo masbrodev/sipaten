@@ -54,7 +54,7 @@ class PaguController extends Controller
                 'sisa' => $pg->sisa,
                 'jumlah_bmn' => Bmn::where('kode_pagu', $pg->kode_pagu)->count(),
                 'realisasi' => count($transaksi) == 0  ? 0 : (in_array($pg->kode_pagu, $ll) ? $transaksi2[$pg->kode_pagu] : null),
-                'diperbaharui' => $pg->updated_at->diffForHumans(),
+                'diperbaharui' => $pg->updated_at == null ? 0 : $pg->updated_at->diffForHumans(),
             ]);
         }
         // return $transaksi;

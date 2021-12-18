@@ -6,6 +6,7 @@
 @section('content')
 @section('plugins.Dropzone', true)
 @section('plugins.LoadingOverlay', true)
+@section('plugins.Select2', true)
 
 <br>
 <section class="content">
@@ -120,6 +121,10 @@
 
 
 <script>
+    $(document).ready(function() {
+        $('.custom-select').select2();
+    });
+
     Dropzone.options.dropzoneForm = {
         autoProcessQueue: false,
         acceptedFiles: ".pdf",
