@@ -18,5 +18,6 @@ class Pagu extends Model
         "nilai",
         "pagu_anggaran",
         "sisa",
+        "created_at"
     ];
 }
