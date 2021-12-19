@@ -43,7 +43,15 @@
                                         <td>{{ $a->nota_dinas }}</td>
                                         <td>{{ $a->nilai }}</td>
                                         <td>{{ $a->keterangan }}</td>
-                                        <td>{{ $a->status }}</td>
+                                        <td>
+                                            @if($a->status == 'proses') <i class="fas fa-hourglass-half" style="color: yellowgreen;"></i> | {{ $a->status }}
+                                            @elseif($a->status == 'selesai')<i style="color: green;" class="fas fa-check-square"></i> | {{ $a->status }}
+                                            @elseif($a->status == 'diterima')<i style="color: green;" class="fas fa-check-double"></i> | {{ $a->status }}
+                                            @elseif($a->status == 'ditolak')<i style="color: red;" class="fas fa-ban"></i> | {{ $a->status }}
+                                            @else
+                                            {{ $a->status }}
+                                            @endif
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
