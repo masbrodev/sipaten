@@ -32,6 +32,7 @@ Route::resource('pagu', PaguController::class);
 Route::resource('transaksi', TransaksiController::class);
 Route::resource('cberkas', BerkasClaimController::class);
 Route::resource('uberkas', BerkasUsulanController::class);
+Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
 
 Auth::routes();
 

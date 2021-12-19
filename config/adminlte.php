@@ -300,12 +300,15 @@ return [
             'icon' => 'fas fa-fw fa-project-diagram',
             'url'  => 'transaksi',
         ],
-        // ['header' => 'account_settings'],
-        // [
-        //     'text' => 'profile',
-        //     'url'  => 'admin/settings',
-        //     'icon' => 'fas fa-fw fa-user',
-        // ],
+        ['header' => 'User'],
+        [
+            'text' => 'Data User',
+            'url'  => '/user',
+            'icon' => 'fas fa-fw fa-user',
+            'data' => [
+                'role' => 'a',
+            ],
+        ],
         // [
         //     'text' => 'change_password',
         //     'url'  => 'admin/settings',
