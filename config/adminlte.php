@@ -231,11 +231,11 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        // [
-        //     'text' => 'Dashboard',
-        //     'url'  => 'home',
-        //     'icon' => 'fa fa-cubes',
-        // ],
+        [
+            'text' => 'Dashboard',
+            'url'  => 'home',
+            'icon' => 'fa fa-cubes',
+        ],
         [
             'header' => 'Pagu',
             'data' => [
