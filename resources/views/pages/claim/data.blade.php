@@ -48,6 +48,7 @@
                                             @elseif($a->status == 'selesai')<i style="color: green;" class="fas fa-check-square"></i> | {{ $a->status }}
                                             @elseif($a->status == 'diterima')<i style="color: green;" class="fas fa-check-double"></i> | {{ $a->status }}
                                             @elseif($a->status == 'ditolak')<i style="color: red;" class="fas fa-ban"></i> | {{ $a->status }}
+                                            @elseif($a->status == 'perbaikan')<i style="color: red;" class="fas fa-cog"></i> | {{ $a->status }}
                                             @else
                                             {{ $a->status }}
                                             @endif

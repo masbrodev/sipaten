@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Nilai <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="nilai" id="nilai" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
+                                        <input type="number" class="form-control" name="nilai" id="nilai" oninvalid="this.setCustomValidity('Lengkapi Inputan')" required="" oninput="setCustomValidity('')">
                                     </div>
                                 </div>
                             </div>

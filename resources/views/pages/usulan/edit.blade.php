@@ -62,7 +62,11 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <label>Berkas</label>
-                                    <form id="dropzoneForm" class="dropzone" action="{{ route('cberkas.store') }}" method="post" enctype="multipart/form-data">
+                                    @if(count($berkas) != 0)
+                                    <br>
+                                    <button type="button" class="btn btn-outline-danger float-sm-right" data-toggle="modal" data-target="#opsi-berkas">Opsi Berkas</button>
+                                    @endif
+                                    <form id="dropzoneForm" class="dropzone" action="{{ route('uberkas.store') }}" method="post" enctype="multipart/form-data">
                                         @csrf
                                     </form>
                                 </div>
@@ -79,6 +83,37 @@
     </div>
 </section>
 
+<div class="modal fade" id="opsi-berkas">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Opsi Berkas</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
+                    @foreach($berkas as $b)
+                    <li>
+                        <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
+
+                        <div class="mailbox-attachment-info">
+                            <a href=" {{URL::to( 'berkas/' . $b->lokasi .'/'. $b->nama_berkas)}}" target="_blank" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i>{{ Str::of($b->nama_berkas)->afterLast('_BU_') }}</a>
+                            <span class="mailbox-attachment-size clearfix mt-1">
+                                <span>Hapus File</span>
+                                <a href=" {{ route('uberkas.edit', $b->id)}} " class="btn btn-outline-danger btn-sm float-right"><i class="fas fa-trash"></i></a>
+                            </span>
+                        </div>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.modal-content -->
+</div>
 
 @endsection
 @section('adminlte_css')
@@ -163,7 +198,7 @@
                     type: 'POST',
                     data: {
                         'bmn_id': $('#bmn_id').val(),
-                        'user_id': 2,
+                        'user_id': '{{ Auth::user()->id}}',
                         'kode_usulan': $('#kode_usulan').val(),
                         'nota_dinas': $('#nota_dinas').val(),
                         'nilai': $('#nilai').val(),
@@ -181,7 +216,7 @@
                     },
                     success: function() {
                         $.LoadingOverlay("hide");
-                        window.location.href = "{{ route('usulan.index') }}";
+                        window.location.href = "{{ route('usulan.show', $us->id) }}";
                     },
                     error: function(error) {
                         console.log(error);
@@ -200,7 +235,7 @@
                     var _this = this;
                     _this.removeAllFiles();
                     $.LoadingOverlay("hide");
-                    window.location.href = "{{ route('usulan.index') }}";
+                    window.location.href = "{{ route('usulan.show', $us->id) }}";
 
                 }
             });

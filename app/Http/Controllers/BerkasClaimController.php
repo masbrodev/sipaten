@@ -105,9 +105,18 @@ class BerkasClaimController extends Controller
      * @param  \App\Models\BerkasClaim  $berkasClaim
      * @return \Illuminate\Http\Response
      */
-    public function edit(BerkasClaim $berkasClaim)
+    public function edit($berkasClaim)
     {
-        //
+        $data = BerkasClaim::where('id', $berkasClaim)->first();
+        $path = public_path('berkas/') . $data->lokasi . '/' . $data->nama_berkas;
+
+        if (file_exists($path)) {
+            $data->delete();
+            unlink($path);
+            return redirect()->back();
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -128,8 +137,8 @@ class BerkasClaimController extends Controller
      * @param  \App\Models\BerkasClaim  $berkasClaim
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BerkasClaim $berkasClaim)
+    public function destroy($berkasClaim)
     {
-        //
+
     }
 }

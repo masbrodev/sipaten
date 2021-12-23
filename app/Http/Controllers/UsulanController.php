@@ -29,8 +29,8 @@ class UsulanController extends Controller
     public function index()
     {
         $data['us'] = Auth::user()->role == 'a' ?
-        Usulan::with('user', 'bmn')->orderBy('created_at', 'DESC')->get() :
-        Usulan::with('user', 'bmn')->where('user_id', Auth::id())->orderBy('created_at', 'DESC')->get();
+            Usulan::with('user', 'bmn')->orderBy('created_at', 'DESC')->get() :
+            Usulan::with('user', 'bmn')->where('user_id', Auth::id())->orderBy('created_at', 'DESC')->get();
         return view('pages.usulan.data', $data);
     }
 
@@ -90,6 +90,7 @@ class UsulanController extends Controller
     {
         $data['bmn'] = Bmn::all();
         $data['us'] = Usulan::where('id', $usulan)->first();
+        $data['berkas'] = BerkasUsulan::where('usulan_id', $data['us']->id)->get();
         $data['bmnfix'] = Bmn::where('id', $data['us']->bmn_id)->first();
         // return $data;
         return view('pages.usulan.edit', $data);
@@ -142,8 +143,23 @@ class UsulanController extends Controller
      * @param  \App\Models\Usulan  $usulan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Usulan $usulan)
+    public function destroy(Usulan $usulan, Request $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $data['us'] = Usulan::where('id', $request->id)->first();
+            $data['berkas'] = BerkasUsulan::where('usulan_id', $data['us']->id)->get();
+            foreach ($data['berkas'] as $f) {
+                unlink(public_path('berkas/') . $f->lokasi . '/' . $f->nama_berkas);
+            }
+
+            BerkasUsulan::where('usulan_id', $request->id)->delete();
+
+            $usulan->delete();
+            DB::commit();
+            return redirect(route('usulan.index'));
+        } catch (\Exception $th) {
+            DB::rollBack();
+        }
     }
 }

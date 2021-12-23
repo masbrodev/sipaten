@@ -93,6 +93,7 @@ class ClaimController extends Controller
     {
         $data['bmn'] = Bmn::all();
         $data['cl'] = Claim::where('id', $claim)->first();
+        $data['berkas'] = BerkasClaim::where('claim_id', $data['cl']->id)->get();
         $data['bmnfix'] = Bmn::where('id', $data['cl']->bmn_id)->first();
         // return $data;
         return view('pages.claim.edit', $data);
@@ -145,8 +146,23 @@ class ClaimController extends Controller
      * @param  \App\Models\Claim  $claim
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Claim $claim)
+    public function destroy(Claim $claim, Request $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $data['cl'] = Claim::where('id', $request->id)->first();
+            $data['berkas'] = BerkasClaim::where('claim_id', $data['cl']->id)->get();
+            foreach ($data['berkas'] as $f) {
+                unlink(public_path('berkas/') . $f->lokasi . '/' . $f->nama_berkas);
+            }
+
+            BerkasClaim::where('claim_id', $request->id)->delete();
+
+            $claim->delete();
+            DB::commit();
+            return redirect(route('claim.index'));
+        } catch (\Exception $th) {
+            DB::rollBack();
+        }
     }
 }

@@ -66,6 +66,29 @@
                                     </div>
                                 </div>
                             </div>
+                            <hr>
+                            @if(Auth::user()->role == 'u' && $cl->status != null)
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <label>Status</label>
+                                        <input type="text" class="form-control" disabled value="{{ $cl->status }}">
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+
+                            @if(Auth::user()->role == 'u' && $cl->tindak_lanjut != null)
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <label>Tindak Lanjut</label>
+                                        <input type="text" class="form-control" disabled value="{{ $cl->tindak_lanjut }}">
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+
                             @if(Auth::user()->role == 'a')
                             <hr>
                             <div class="form-group">
@@ -75,6 +98,7 @@
                                         <select class="custom-select" name="status" id="status" {{ $cl->status == 'selesai' || $cl->status == 'ditolak' ? 'disabled' : '' }}>
                                             <option selected value="proses">Prores</option>
                                             <option value="diterima" {{ $cl->status == 'diterima' ? 'selected' : '' }}>Diterima</option>
+                                            <option value="perbaikan" {{ $cl->status == 'perbaikan' ? 'selected' : '' }}>Perbaikan</option>
                                             <option value="ditolak" {{ $cl->status == 'ditolak' ? 'selected' : '' }}>Ditolak</option>
                                             <option value="selesai" {{ $cl->status == 'selesai' ? 'selected' : '' }}>Selesai</option>
                                         </select>
@@ -118,8 +142,12 @@
                     <div class="card-footer">
                         <div class="text-right">
                             <div class="btn-group">
-                                <input type="{{ $cl->status == 'selesai' || $cl->status == 'ditolak' ? 'hidden' : 'submit' }}" form="form-show" id="tambah" name="tambah" value="Simpan" class="btn btn-outline-success">
-                                <a class="btn btn-outline-secondary" href="{{ url()->previous() }}"><i class="fa fa-cog"></i> Kembali</a>
+                                <a class="btn btn-outline-secondary" href="{{ url()->previous() }}"><i class="fa fa-chevron-circle-left"></i> Kembali</a>
+                                <button type="submit" form="form-show" {{ Auth::user()->role == 'u' || $cl->status == 'selesai' || $cl->status == 'ditolak' ? 'hidden' : '' }} class="btn btn-outline-success">
+                                    <i class="fa fa-save"></i> Simpan
+                                </button>
+                                <button type="button" {{ $cl->status == 'proses' || $cl->status == 'ditolak' ? '' : 'disabled'}} class="btn btn-outline-danger" data-toggle="modal" data-target="#hapus"><i class="fa fa-trash"></i> Hapus</button>
+                                <button class="btn btn-outline-warning" {{ Auth::user()->role == 'a' ? '' : ($cl->status == 'proses' || $cl->status == 'perbaikan' ? '' : 'disabled')}} onclick="location.href=`{{ route('claim.edit', $cl->id) }}`"><i class="fa fa-cog"></i> Edit</button>
                             </div>
                         </div>
                     </div>
@@ -129,4 +157,30 @@
     </div>
 </section>
 
+<div class="modal" id="hapus">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Hapus Data Claim</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4>Apakah Anda Yakin Menghapus Data Ini ?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="btnclose" data-dismiss="modal">Close</button>
+                <form action="{{ route('claim.destroy', $cl->id) }}" method="POST">
+                    @csrf
+                    @method("DELETE")
+                    <input type="hidden" class="form-control" value="{{ $cl->id }}" name="id" id="id">
+                    <button type="submit" class="btn btn-outline-danger float-sm-left">Hapus</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.modal-content -->
+</div>
 @endsection

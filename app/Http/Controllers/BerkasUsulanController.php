@@ -105,9 +105,18 @@ class BerkasUsulanController extends Controller
      * @param  \App\Models\BerkasUsulan  $berkasUsulan
      * @return \Illuminate\Http\Response
      */
-    public function edit(BerkasUsulan $berkasUsulan)
+    public function edit($berkasUsulan)
     {
-        //
+        $data = BerkasUsulan::where('id', $berkasUsulan)->first();
+        $path = public_path('berkas/') . $data->lokasi . '/' . $data->nama_berkas;
+
+        if (file_exists($path)) {
+            $data->delete();
+            unlink($path);
+            return redirect()->back();
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
