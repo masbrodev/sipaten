@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bmn;
+use App\Models\Claim;
+use App\Models\Transaksi;
+use App\Models\Usulan;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $data['bmn'] = Bmn::all()->count();
+        $data['tr'] = Transaksi::all()->count();
+        $data['cl'] = Claim::all()->count();
+        $data['us'] = Usulan::all()->count();
         $bmn = Bmn::all()->groupBy('nama_barang');
         $data['nama'] = [];
         $data['jumlah'] = [];

@@ -2,6 +2,70 @@
 
 @section('content')
 <div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3>{{ $bmn }}</h3>
+
+                    <p>Total Barang BMN</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-car"></i>
+                </div>
+                <a href="{{ route('bmn.index')}}" class="small-box-footer"> <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>{{ $tr }}</h3>
+
+                    <p>Total Transaksi</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-credit-card"></i>
+                </div>
+                <a href="{{ route('transaksi.index')}}" class="small-box-footer"> <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>{{ $cl }}</h3>
+
+                    <p>Total Claim</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-gas-pump"></i>
+                </div>
+                <a href="{{ route('claim.index') }}" class="small-box-footer"> <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>{{ $us }}</h3>
+
+                    <p>Total Usulan</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-shopping-cart"></i>
+                </div>
+                <a href="{{ route('usulan.index') }}" class="small-box-footer"> <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
+
+
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card card-danger">
